@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.ViewBinding
+
 plugins {
     id("com.android.application")
 }
@@ -14,6 +16,11 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    viewBinding{
+      enable=true
+
     }
 
     buildTypes {
@@ -40,10 +47,12 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.3.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.3.0")
     implementation ("com.squareup.retrofit2:adapter-rxjava2:2.3.0")
+    implementation ("androidx.cardview:cardview:1.0.0")
 
     implementation ("io.reactivex.rxjava2:rxjava:2.1.1")
     implementation ("io.reactivex.rxjava2:rxandroid:2.1.1")
     implementation ("androidx.recyclerview:recyclerview:1.3.2")
+    implementation ("com.squareup.picasso:picasso:2.71828")
 
 
 
