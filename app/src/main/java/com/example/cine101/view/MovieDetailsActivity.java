@@ -104,9 +104,19 @@ public class MovieDetailsActivity extends AppCompatActivity {
                         movieProduction_Text+=e.getName() + " ";
                     }
 
+                    String rate =Double.toString(movieDetails.getVote_average());
+                    String formattedRate = String.format("%.1f", Double.parseDouble(rate));
+
+                    binding.rateText.setText(formattedRate);
 
 
-
+                    if(movieDetails.getBudget()!=0 || movieDetails.getRevenue()!=0){
+                        binding.movieBudget.setText("$"+movieDetails.getBudget());
+                        binding.movieRevenue.setText("$"+movieDetails.getRevenue());
+                    }else{
+                        binding.movieBudget.setText("Budget not available");
+                        binding.movieRevenue.setText("Revenue not available");
+                    }
                     Picasso.get().load("https://image.tmdb.org/t/p/original" + movieDetails.getBackdrop_path()).into(binding.movieBrand);
                     Picasso.get().load("https://image.tmdb.org/t/p/original" + movieDetails.getPoster_path()).into(binding.moviePoster);
                     binding.movieTitle.setText(movieDetails.getTitle());
@@ -116,12 +126,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
                     binding.movieStatus.setText(movieDetails.getStatus());
                     binding.movieDate.setText(movieDetails.getRelease_date());
                     binding.movieLanguage.setText(movieDetails.getOriginal_language());
-                    binding.movieBudget.setText("$"+movieDetails.getBudget());
-                    binding.movieRevenue.setText("$"+movieDetails.getRevenue());
                     binding.movieProductionCompanies.setText(movieProduction_Text);
-
-
-
 
                 }else {
                     System.out.println("HATA");

@@ -63,14 +63,46 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent">
 
-                    <TextView
-                        android:id="@+id/movie_title"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/movie_title"
+                            android:layout_width="160dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nunito"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="7dp"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal"
+                            >
+
+                            <TextView
+                                android:id="@+id/rate_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="3dp"
+                                android:fontFamily="@font/nunito"
+                                android:textColor="#FFFF"
+                                android:textSize="11dp" />
+
+                            <ImageView
+                                android:id="@+id/imageView"
+                                android:layout_width="14dp"
+                                android:layout_height="15dp"
+                                android:src="@drawable/star"
+                                app:srcCompat="@drawable/ic_launcher_foreground" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/movie_type"
@@ -98,6 +130,7 @@
                         android:fontFamily="@font/nunito"
                         android:textColor="@color/white"
                         android:textSize="11sp" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -150,7 +183,7 @@
                 <LinearLayout
                     android:id="@+id/linearLayout"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:layout_marginLeft="6dp"
                     app:layout_constraintStart_toStartOf="parent">
@@ -200,7 +233,7 @@
 
                     <TextView
                         android:id="@+id/textView_production"
-                        android:layout_width="match_parent"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/nunito"
@@ -210,7 +243,7 @@
 
                 <LinearLayout
                     android:id="@+id/linearLayout2"
-                    android:layout_width="180dp"
+                    android:layout_width="170dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:orientation="vertical"

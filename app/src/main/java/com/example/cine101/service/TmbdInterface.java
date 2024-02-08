@@ -1,4 +1,5 @@
 package com.example.cine101.service;
+
 import com.example.cine101.model.Cast;
 import com.example.cine101.model.CastResponse;
 import com.example.cine101.model.ImagesResponse;
@@ -6,6 +7,7 @@ import com.example.cine101.model.MovieDetails;
 import com.example.cine101.model.MovieResponse;
 import com.example.cine101.model.Movie;
 
+import io.reactivex.Observable;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -17,7 +19,7 @@ public interface TmbdInterface {
 
 
     @GET("movie/popular")
-    Call<MovieResponse> getPopularMovies(
+    Observable<MovieResponse> getPopularMovies(
             @Query("api_key") String apiKey,
             @Query("language") String language,
             @Query("page") int page,
@@ -25,13 +27,13 @@ public interface TmbdInterface {
     );
 
     @GET("trending/movie/day")
-    Call<MovieResponse> getTrendingMovies(
+    Observable<MovieResponse> getTrendingMovies(
             @Query("api_key") String apiKey,
             @Query("language") String language
     );
 
     @GET("movie/now_playing")
-    Call<MovieResponse> getTheatresMovies(
+    Observable<MovieResponse> getTheatresMovies(
             @Query("api_key") String apikey,
             @Query("language") String language,
             @Query("page") int page,

@@ -20,6 +20,7 @@ public class Movie {
     private String releaseDate;
     private String title;
     private boolean video;
+    @SerializedName("vote_average")
     private double voteAverage;
     private int voteCount;
 

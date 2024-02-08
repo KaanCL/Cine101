@@ -66,11 +66,22 @@ public class MainActivityMovie_Adapter extends RecyclerView.Adapter<MainActivity
         }
 
         public void bind (Movie movie , Integer Position){
+
         if(movie.getTitle()!=null || movie.getPosterPath() != null) {
+
+            String rate =Double.toString(movie.getVoteAverage());
+            String formattedRate = String.format("%.1f", Double.parseDouble(rate));
+
+          /* for(int i = 0 ; i<rate.length();i++){
+               e+=rate.charAt(i);
+               if(i>=2){
+                   break;
+               }
+           }*/
             textTitle = itemView.findViewById(R.id.title_text);
-            //rateTitle = itemView.findViewById(R.id.rate_text);
+            rateTitle = itemView.findViewById(R.id.rate_text);
             brandImage = itemView.findViewById(R.id.brand_image);
-            //rateTitle.setText(movie.getVoteAverage());
+            rateTitle.setText(formattedRate);
             textTitle.setText(movie.getTitle());
            Picasso.get().load("https://image.tmdb.org/t/p/original" + movie.getPosterPath()).into(brandImage);
 
