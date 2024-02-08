@@ -1,6 +1,7 @@
 package com.example.cine101.service;
 import com.example.cine101.model.Cast;
 import com.example.cine101.model.CastResponse;
+import com.example.cine101.model.ImagesResponse;
 import com.example.cine101.model.MovieDetails;
 import com.example.cine101.model.MovieResponse;
 import com.example.cine101.model.Movie;
@@ -46,6 +47,12 @@ public interface TmbdInterface {
 
     @GET("movie/{movie_id}/credits")
      Call<CastResponse> getCast(
+            @Path("movie_id") int movie_id,
+            @Query("api_key") String apikey
+    );
+
+    @GET("movie/{movie_id}/images")
+    Call<ImagesResponse> getBackdrop(
             @Path("movie_id") int movie_id,
             @Query("api_key") String apikey
     );

@@ -14,11 +14,14 @@ import android.widget.TextView;
 import android.content.Intent;
 import com.example.cine101.R;
 import com.example.cine101.adapter.MovieDetailsActivity_Actor_Adapter;
+import com.example.cine101.adapter.MovieDetailsActivity_Images_Adapter;
 import com.example.cine101.databinding.ActivityMainBinding;
 import com.example.cine101.databinding.ActivityMovieDetailsBinding;
 import com.example.cine101.model.Cast;
 import com.example.cine101.model.CastResponse;
 import com.example.cine101.model.Genre;
+import com.example.cine101.model.Images;
+import com.example.cine101.model.ImagesResponse;
 import com.example.cine101.model.Movie;
 import com.example.cine101.model.MovieDetails;
 import com.example.cine101.model.ProductionCompany;
@@ -39,8 +42,10 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
     ActivityMovieDetailsBinding binding;
      int movieId;
-     RecyclerView recyclerView_cast;
+     RecyclerView recyclerView_cast , recyclerView_images;
+
      MovieDetailsActivity_Actor_Adapter movieDetailsActivityActorAdapter;
+     MovieDetailsActivity_Images_Adapter movieDetailsActivityImagesAdapter;
 
 
     private String BASE_URL="https://api.themoviedb.org/3/";
@@ -59,7 +64,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         movieId = intent.getIntExtra("movieId",-1);
 
-        recyclerView_cast = findViewById(R.id.reyclerView_cast);
+        recyclerView_cast = binding.reyclerViewCast;
+        recyclerView_images = findViewById(R.id.recyclerView_images);
 
 
 
@@ -71,6 +77,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         getMovieDetails(api_key,movieId);
         getMovieCast(api_key,movieId);
+        getMovieImages(api_key,movieId);
 
     }
 
@@ -94,7 +101,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
                     }
 
                     for(ProductionCompany e : productionCompanies){
-                        movieProduction_Text+=e.getName();
+                        movieProduction_Text+=e.getName() + " ";
                     }
 
 
@@ -156,6 +163,39 @@ public class MovieDetailsActivity extends AppCompatActivity {
            }
        });
 
+
+   }
+
+   public void getMovieImages(String apikey ,int id){
+       TmbdInterface tmbdInterface = retrofit.create(TmbdInterface.class);
+       Call<ImagesResponse> call = tmbdInterface.getBackdrop(id,apikey);
+       call.enqueue(new Callback<ImagesResponse>() {
+           @Override
+           public void onResponse(Call<ImagesResponse> call, Response<ImagesResponse> response) {
+
+               if(response.isSuccessful()){
+                   ImagesResponse imagesResponse = response.body();
+                   ArrayList<Images> images = imagesResponse.getBackdrops();
+
+                   recyclerView_images.setLayoutManager(new LinearLayoutManager(MovieDetailsActivity.this,LinearLayoutManager.HORIZONTAL,false));
+                   movieDetailsActivityImagesAdapter = new MovieDetailsActivity_Images_Adapter(images);
+                   recyclerView_images.setAdapter(movieDetailsActivityImagesAdapter);
+
+
+
+               }else{
+
+                   System.out.println("HATA !");
+               }
+
+
+           }
+
+           @Override
+           public void onFailure(Call<ImagesResponse> call, Throwable t) {
+
+           }
+       });
 
    }
 
