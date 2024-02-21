@@ -1,4 +1,7 @@
-package com.example.cine101.model;
+package com.example.cine101.responses;
+
+import com.example.cine101.model.Movie;
+import com.example.cine101.model.MovieDetails;
 
 import java.util.ArrayList;
 

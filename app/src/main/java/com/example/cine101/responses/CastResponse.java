@@ -1,4 +1,6 @@
-package com.example.cine101.model;
+package com.example.cine101.responses;
+
+import com.example.cine101.model.Cast;
 
 import java.util.ArrayList;
 

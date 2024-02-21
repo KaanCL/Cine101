@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cine101.R;
 import com.example.cine101.model.Movie;
-import com.example.cine101.model.MovieDetails;
-import com.example.cine101.view.MainActivity;
 import com.example.cine101.view.MovieDetailsActivity;
 import com.squareup.picasso.Picasso;
 
