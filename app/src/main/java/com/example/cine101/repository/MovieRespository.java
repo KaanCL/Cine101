@@ -20,6 +20,9 @@ import static com.example.cine101.util.Credentials.language;
 import static com.example.cine101.util.Credentials.page;
 import static com.example.cine101.util.Credentials.region;
 
+import io.reactivex.disposables.Disposable;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+
 import android.util.Log;
 
 import org.intellij.lang.annotations.Language;
@@ -30,20 +33,71 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.disposables.CompositeDisposable;
 
 public class MovieRespository {
     public static final String TAG = MovieRespository.class.getSimpleName();
     private TmbdInterface tmbdInterface;
+    private CompositeDisposable compositeDisposable;
 
 
 
     public MovieRespository() {
         tmbdInterface = RetrofitRequest.getRetrofitInstance().create(TmbdInterface.class);
+        compositeDisposable = new CompositeDisposable();
+
     }
 
 
-    public LiveData<MovieResponse>  getSearch_popular(String apikey , String language , int page , String region){
+    public LiveData<MovieResponse> getSearch_popular(String apikey, String language, int page, String region) {
+        final MutableLiveData<MovieResponse> data = new MutableLiveData<>();
+        compositeDisposable.add(tmbdInterface.getPopularMovies(apikey, language, page, region)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        movieResponse -> {
+                    data.setValue(movieResponse);
+                }));
+        return data;
+
+    }
+
+
+public void clear(){
+        compositeDisposable.clear();
+}
+
+    public LiveData<MovieResponse> getSearch_Trending(String apikey, String language) {
+        final MutableLiveData<MovieResponse> data = new MutableLiveData<>();
+        compositeDisposable.add(tmbdInterface.getTrendingMovies(apikey, language)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        movieResponse -> {
+                            data.setValue(movieResponse);
+                        }));
+        return data;
+
+    }
+
+
+    public LiveData<MovieResponse> getSearch_inTheatre(String apikey, String language , int page , String region) {
+        final MutableLiveData<MovieResponse> data = new MutableLiveData<>();
+        compositeDisposable.add(tmbdInterface.getTheatresMovies(apikey, language , page ,region)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        movieResponse -> {
+                            data.setValue(movieResponse);
+                        }));
+        return data;
+
+    }
+
+
+   /* public LiveData<MovieResponse>  getSearch_popular(String apikey , String language , int page , String region){
         final MutableLiveData<MovieResponse> data = new MutableLiveData<>();
         tmbdInterface.getPopularMovies(apikey , language , page ,region)
                 .enqueue(new Callback<MovieResponse>() {
@@ -65,9 +119,9 @@ public class MovieRespository {
                     }
                 });
         return data;
-    }
+    }*/
 
-    public LiveData<MovieResponse> getSearch_Trending(String apiKey, String language){
+ /*   public LiveData<MovieResponse> getSearch_Trending(String apiKey, String language){
         final MutableLiveData<MovieResponse> data = new MutableLiveData<>();
         tmbdInterface.getTrendingMovies(apiKey,language)
                 .enqueue(new Callback<MovieResponse>() {
@@ -85,9 +139,9 @@ public class MovieRespository {
                     }
                 });
         return data;
-    }
+    }*/
 
-    public LiveData<MovieResponse> getSearch_inTheatre(String apikey , String language , int page , String region){
+   /* public LiveData<MovieResponse> getSearch_inTheatre(String apikey , String language , int page , String region){
         final MutableLiveData<MovieResponse> data = new MutableLiveData<>();
         tmbdInterface.getTheatresMovies(apikey , language , page ,region)
                 .enqueue(new Callback<MovieResponse>() {
@@ -106,7 +160,7 @@ public class MovieRespository {
                 });
      return  data;
 
-    }
+    }*/
 
     public LiveData<MovieDetails> getMovieDetails(int movieId , String apiKey){
         final MutableLiveData<MovieDetails> data = new MutableLiveData<>();

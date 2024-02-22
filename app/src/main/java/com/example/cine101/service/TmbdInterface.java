@@ -17,7 +17,7 @@ public interface TmbdInterface {
 
 
     @GET("movie/popular")
-    Call<MovieResponse> getPopularMovies(
+    Observable<MovieResponse> getPopularMovies(
             @Query("api_key") String apiKey,
             @Query("language") String language,
             @Query("page") int page,
@@ -25,13 +25,13 @@ public interface TmbdInterface {
     );
 
     @GET("trending/movie/day")
-    Call<MovieResponse> getTrendingMovies(
+    Observable<MovieResponse> getTrendingMovies(
             @Query("api_key") String apiKey,
             @Query("language") String language
     );
 
     @GET("movie/now_playing")
-    Call<MovieResponse> getTheatresMovies(
+    Observable<MovieResponse> getTheatresMovies(
             @Query("api_key") String apikey,
             @Query("language") String language,
             @Query("page") int page,

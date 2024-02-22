@@ -81,16 +81,13 @@ public class MovieDetailsActivity extends AppCompatActivity {
         movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
 
 
-        //apiRequest = RetrofitRequest.getRetrofitInstance().create(TmbdInterface.class);
-
-       getMovieDetails();
+        getMovieDetails();
         getMovieCast();
         getMovieImages();
 
     }
 
-
-      public void getMovieDetails(){
+    public void getMovieDetails(){
         movieViewModel.getGetMovieDetailsLiveData().observe(this , movieDetails -> {
 
             ArrayList<Genre> genres = movieDetails.getGenres();
@@ -137,7 +134,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
 
     }
-
  /* public void getMovieDetails(String apikey,int id){
         TmbdInterface tmbdInterface = retrofit.create(TmbdInterface.class);
         Call<MovieDetails> call = tmbdInterface.getMovieDetails(id,apikey);
@@ -198,17 +194,15 @@ public class MovieDetailsActivity extends AppCompatActivity {
         });
 
     }*/
-
     public void getMovieCast(){
         movieViewModel.getGetCastLiveData().observe(this ,castResponse -> {
             ArrayList<Cast> casts = castResponse.getCast();
 
             recyclerView_cast.setLayoutManager(new LinearLayoutManager(MovieDetailsActivity.this,LinearLayoutManager.HORIZONTAL,false));
-            movieDetailsActivityActorAdapter = new MovieDetailsActivity_Actor_Adapter(casts);
+            movieDetailsActivityActorAdapter = new MovieDetailsActivity_Actor_Adapter(this,casts);
             recyclerView_cast.setAdapter(movieDetailsActivityActorAdapter);
         });
     }
-
 
   /* public void getMovieCast(String apikey , int id) {
        TmbdInterface tmbdInterface = retrofit.create(TmbdInterface.class);
@@ -243,12 +237,9 @@ public class MovieDetailsActivity extends AppCompatActivity {
             ArrayList<Images> images = imagesResponse.getBackdrops();
 
             recyclerView_images.setLayoutManager(new LinearLayoutManager(MovieDetailsActivity.this,LinearLayoutManager.HORIZONTAL,false));
-            movieDetailsActivityImagesAdapter = new MovieDetailsActivity_Images_Adapter(images);
+            movieDetailsActivityImagesAdapter = new MovieDetailsActivity_Images_Adapter(this,images);
             recyclerView_images.setAdapter(movieDetailsActivityImagesAdapter);
-        });
-
-    }
-
+        });}
    /*public void getMovieImages(String apikey ,int id){
        TmbdInterface tmbdInterface = retrofit.create(TmbdInterface.class);
        Call<ImagesResponse> call = tmbdInterface.getBackdrop(id,apikey);

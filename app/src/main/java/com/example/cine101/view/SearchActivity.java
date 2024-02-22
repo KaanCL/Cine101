@@ -118,7 +118,7 @@ public class SearchActivity extends AppCompatActivity {
                     System.out.println("işlem başarılı");
 
                     recyclerView_SearchResult.setLayoutManager(new LinearLayoutManager(SearchActivity.this, LinearLayoutManager.HORIZONTAL, false));
-                    mainActivityMovieAdapter = new MainActivityMovie_Adapter(movies);
+                    mainActivityMovieAdapter = new MainActivityMovie_Adapter(getApplicationContext(), movies);
                     recyclerView_SearchResult.setAdapter(mainActivityMovieAdapter);
 
                 } else {

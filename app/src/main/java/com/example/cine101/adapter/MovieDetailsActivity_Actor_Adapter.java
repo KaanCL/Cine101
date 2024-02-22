@@ -1,15 +1,15 @@
 package com.example.cine101.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.bumptech.glide.Glide;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.cine101.R;
 import com.example.cine101.model.Cast;
 import com.squareup.picasso.Picasso;
@@ -21,8 +21,12 @@ import java.util.ArrayList;
 public class MovieDetailsActivity_Actor_Adapter  extends RecyclerView.Adapter<MovieDetailsActivity_Actor_Adapter.RowHolder> {
 
     private ArrayList<Cast> cast;
+    private Context context;
 
-    public MovieDetailsActivity_Actor_Adapter(ArrayList<Cast> cast) {this.cast=cast;}
+    public MovieDetailsActivity_Actor_Adapter( Context context ,ArrayList<Cast> cast) {
+        this.cast=cast;
+        this.context = context;
+    }
 
     @NonNull
     @Override
@@ -56,7 +60,12 @@ public class MovieDetailsActivity_Actor_Adapter  extends RecyclerView.Adapter<Mo
             textRole=itemView.findViewById(R.id.actor_role);
             brandImage=itemView.findViewById(R.id.actor_brand);
 
-            Picasso.get().load("https://image.tmdb.org/t/p/original" + cast.getProfilePath()).into(brandImage);
+          //  Picasso.get().load("https://image.tmdb.org/t/p/original" + cast.getProfilePath()).into(brandImage);
+
+            Glide.with(context)
+                    .load("https://image.tmdb.org/t/p/original" + cast.getProfilePath())
+                    .into(brandImage);
+
             textName.setText(cast.getName());
             textRole.setText(cast.getCharacter());
 

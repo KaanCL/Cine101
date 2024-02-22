@@ -68,11 +68,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView_theatre = findViewById(R.id.recyclerView_inTheatre);
 
         compositeDisposable = new CompositeDisposable();
-        retrofitRequest = new RetrofitRequest();
+
 
         movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
-
-        //Retrofit && JSON
 
 
         // getSearch_popular(API_KEY, language, page, region);
@@ -85,12 +83,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
     private void getMovie_Popular(){
         movieViewModel.getSearch_popular_LiveData().observe(this, movieResponse -> {
-            movies = new ArrayList<Movie>(movieResponse.getResults());
+            movies = (movieResponse.getResults());
 
-            recyclerView_popular.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
-            mainActivityMovieAdapter = new MainActivityMovie_Adapter(movies);
+            recyclerView_popular.setLayoutManager(new LinearLayoutManager(MainActivity.this ,LinearLayoutManager.HORIZONTAL,false));
+            mainActivityMovieAdapter = new MainActivityMovie_Adapter(this,movies);
             recyclerView_popular.setAdapter(mainActivityMovieAdapter);
 
         });
@@ -98,10 +97,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void getMovie_Trending(){
         movieViewModel.getSearch_trending_LiveData().observe(this,movieResponse -> {
-            movies = new ArrayList<Movie>(movieResponse.getResults());
+            movies =(movieResponse.getResults());
 
             recyclerView_trending.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
-            mainActivityMovieAdapter = new MainActivityMovie_Adapter(movies);
+            mainActivityMovieAdapter = new MainActivityMovie_Adapter(this,movies);
             recyclerView_trending.setAdapter(mainActivityMovieAdapter);
         });
 
@@ -113,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
             movies = new ArrayList<Movie>(movieResponse.getResults());
 
             recyclerView_theatre.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
-            mainActivityMovieAdapter = new MainActivityMovie_Adapter(movies);
+            mainActivityMovieAdapter = new MainActivityMovie_Adapter(this,movies);
             recyclerView_theatre.setAdapter(mainActivityMovieAdapter);
         });
     }
@@ -289,13 +288,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }*/
-
-
-
-
-
-
-
 
 
 }

@@ -1,9 +1,11 @@
 package com.example.cine101.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import com.bumptech.glide.Glide;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,8 +21,12 @@ public class MovieDetailsActivity_Images_Adapter extends RecyclerView.Adapter<Mo
 
 
     private ArrayList<Images> images;
+    private Context context;
 
-    public MovieDetailsActivity_Images_Adapter(ArrayList<Images> images) {this.images=images;}
+    public MovieDetailsActivity_Images_Adapter(Context context,ArrayList<Images> images) {
+        this.images=images;
+        this.context = context;
+    }
 
     @NonNull
     @Override
@@ -52,8 +58,10 @@ public class MovieDetailsActivity_Images_Adapter extends RecyclerView.Adapter<Mo
        public void bind(Images images , Integer position){
 
            movieBrand = itemView.findViewById(R.id.movie_images);
-           Picasso.get().load("https://image.tmdb.org/t/p/original"+images.getFile_path()).into(movieBrand);
-
+          // Picasso.get().load("https://image.tmdb.org/t/p/original"+images.getFile_path()).into(movieBrand);
+           Glide.with(context)
+                   .load("https://image.tmdb.org/t/p/original" + images.getFile_path())
+                   .into(movieBrand);
        }
 
 
