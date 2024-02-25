@@ -1,7 +1,6 @@
 package com.example.cine101.view;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,51 +8,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.cine101.R;
 import com.example.cine101.ViewModel.MovieViewModel;
 import com.example.cine101.adapter.MainActivityMovie_Adapter;
-import com.example.cine101.responses.MovieResponse;
 import com.example.cine101.model.Movie;
-import com.example.cine101.service.RetrofitRequest;
-import com.example.cine101.service.TmbdInterface;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-
-import static com.example.cine101.util.Credentials.API_KEY;
-import static com.example.cine101.util.Credentials.BASE_URL;
-import static com.example.cine101.util.Credentials.language;
-import static com.example.cine101.util.Credentials.page;
-import static com.example.cine101.util.Credentials.region;
-
 
 
 public class MainActivity extends AppCompatActivity {
 
     ArrayList<Movie> movies;
-    Retrofit retrofit;
-    RecyclerView recyclerView_popular, recyclerView_trending, recyclerView_theatre ;
+    RecyclerView recyclerView_popular, recyclerView_trending, recyclerView_theatre  ,recyclerView_upcoming , recyclerView_toprated;
     MainActivityMovie_Adapter mainActivityMovieAdapter;
-    EditText editText;
-    String title;
-    ImageView searchSection;
-    CompositeDisposable compositeDisposable;
-    RetrofitRequest retrofitRequest;
     private MovieViewModel movieViewModel;
 
 
@@ -66,9 +34,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView_popular = findViewById(R.id.recyclerView_popular);
         recyclerView_trending = findViewById(R.id.recyclerView_trending);
         recyclerView_theatre = findViewById(R.id.recyclerView_inTheatre);
-
-        compositeDisposable = new CompositeDisposable();
-
+        recyclerView_upcoming = findViewById(R.id.recyclerView_UpComing);
+        recyclerView_toprated=findViewById(R.id.recyclerView_TopRated);
 
         movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
 
@@ -80,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         getMovie_Popular();
         getMovie_Trending();
         getMovie_Theatre();
+        getMovie_upcoming();
+        getMovie_Toprated();
 
 
     }
@@ -117,8 +86,38 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void getMovie_upcoming(){
+        movieViewModel.getMovieResponseUpcomingLiveData().observe(this , movieResponse -> {
+            movies = new ArrayList<Movie>(movieResponse.getResults());
+
+            recyclerView_upcoming.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+            mainActivityMovieAdapter = new MainActivityMovie_Adapter(this,movies);
+            recyclerView_upcoming.setAdapter(mainActivityMovieAdapter);
+        });
+    }
+
+    private void getMovie_Toprated(){
+        movieViewModel.getMovieResponseTopratedLiveData().observe(this , movieResponse -> {
+            movies = new ArrayList<Movie>(movieResponse.getResults());
+
+            recyclerView_toprated.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+            mainActivityMovieAdapter = new MainActivityMovie_Adapter(this,movies);
+            recyclerView_toprated.setAdapter(mainActivityMovieAdapter);
+        });
+    }
+
+
     public void openSearch(View view) {
         Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+        startActivity(intent);
+    }
+
+    public void openSerie(View view) {
+        Intent intent = new Intent(MainActivity.this, SerieActivity.class);
+        startActivity(intent);
+    }
+    public void openPeople(View view) {
+        Intent intent = new Intent( MainActivity.this,PeopleActivity.class);
         startActivity(intent);
     }
 

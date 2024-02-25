@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cine101.R;
 import com.example.cine101.model.Movie;
 import com.example.cine101.view.MovieDetailsActivity;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -31,7 +30,7 @@ public class MainActivityMovie_Adapter extends RecyclerView.Adapter<MainActivity
     @Override
     public RowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.row_layout_popular,parent,false);
+        View view = layoutInflater.inflate(R.layout.row_layout,parent,false);
         return new RowHolder(view);
 
     }
@@ -83,6 +82,7 @@ public class MainActivityMovie_Adapter extends RecyclerView.Adapter<MainActivity
             textTitle = itemView.findViewById(R.id.title_text);
             rateTitle = itemView.findViewById(R.id.rate_text);
             brandImage = itemView.findViewById(R.id.brand_image);
+
             rateTitle.setText(formattedRate);
             textTitle.setText(movie.getTitle());
           //Picasso.get().load("https://image.tmdb.org/t/p/original" + movie.getPosterPath()).into(brandImage);

@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 public class MovieViewModel extends AndroidViewModel {
     private MovieRespository movieRespository;
-    private LiveData<MovieResponse> movieResponsePopularLiveData , movieResponseTrendingLiveData , movieResponseTheatreLiveData , getMovieSearchResult;
+    private LiveData<MovieResponse> movieResponsePopularLiveData , movieResponseTrendingLiveData , movieResponseTheatreLiveData , movieResponseUpcomingLiveData  ,movieResponseTopratedLiveData ,getMovieSearchResult ;
     private LiveData<MovieDetails> getMovieDetailsLiveData;
     private LiveData<CastResponse> getCastLiveData;
     private LiveData<ImagesResponse> getMovieImagesLiveData;
@@ -39,23 +39,23 @@ public class MovieViewModel extends AndroidViewModel {
         movieResponsePopularLiveData = movieRespository.getSearch_popular(API_KEY, language, page, region);
         movieResponseTrendingLiveData = movieRespository.getSearch_Trending(API_KEY ,language);
         movieResponseTheatreLiveData = movieRespository.getSearch_inTheatre(API_KEY,language,page,region);
+        movieResponseUpcomingLiveData  = movieRespository.getSearch_inUpcoming(API_KEY,language,page,region);
+        movieResponseTopratedLiveData = movieRespository.getSearch_inToprated(API_KEY,language,page,region);
         getMovieDetailsLiveData = movieRespository.getMovieDetails(MovieID ,API_KEY);
         getCastLiveData = movieRespository.getCast(MovieID,API_KEY);
         getMovieImagesLiveData = movieRespository.getMovieImages(MovieID,API_KEY);
         getMovieSearchResult = movieRespository.getSearchResult(API_KEY , Query);
 
+
     }
 
-    public LiveData<MovieResponse> getSearch_popular_LiveData(){
-        return movieResponsePopularLiveData;
+    public LiveData<MovieResponse> getSearch_popular_LiveData(){return movieResponsePopularLiveData;
     }
 
-    public LiveData<MovieResponse> getSearch_trending_LiveData(){
-        return movieResponseTrendingLiveData;
+    public LiveData<MovieResponse> getSearch_trending_LiveData(){return movieResponseTrendingLiveData;
     }
 
-    public LiveData<MovieResponse> getSearch_theatre_LiveData(){
-        return movieResponseTheatreLiveData;
+    public LiveData<MovieResponse> getSearch_theatre_LiveData(){return movieResponseTheatreLiveData;
     }
 
     public LiveData<MovieDetails> getGetMovieDetailsLiveData() {
@@ -72,5 +72,13 @@ public class MovieViewModel extends AndroidViewModel {
 
     public LiveData<MovieResponse> getGetMovieSearchResult() {
         return getMovieSearchResult;
+    }
+
+    public LiveData<MovieResponse> getMovieResponseUpcomingLiveData() {
+        return movieResponseUpcomingLiveData;
+    }
+
+    public LiveData<MovieResponse> getMovieResponseTopratedLiveData() {
+        return movieResponseTopratedLiveData;
     }
 }

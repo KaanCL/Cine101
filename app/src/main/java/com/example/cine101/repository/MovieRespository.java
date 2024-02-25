@@ -93,8 +93,35 @@ public void clear(){
                             data.setValue(movieResponse);
                         }));
         return data;
-
     }
+
+
+
+    public LiveData<MovieResponse> getSearch_inUpcoming(String apikey, String language , int page , String region) {
+        final MutableLiveData<MovieResponse> data = new MutableLiveData<>();
+        compositeDisposable.add(tmbdInterface.getUpcomingMovies(apikey, language , page ,region)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        movieResponse -> {
+                            data.setValue(movieResponse);
+                        }));
+        return data;
+    }
+
+    public LiveData<MovieResponse> getSearch_inToprated(String apikey, String language , int page , String region) {
+        final MutableLiveData<MovieResponse> data = new MutableLiveData<>();
+        compositeDisposable.add(tmbdInterface.getTopratedMovies(apikey, language , page ,region)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        movieResponse -> {
+                            data.setValue(movieResponse);
+                        }));
+        return data;
+    }
+
+
 
 
    /* public LiveData<MovieResponse>  getSearch_popular(String apikey , String language , int page , String region){

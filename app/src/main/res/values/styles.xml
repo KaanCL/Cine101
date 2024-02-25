@@ -4,8 +4,13 @@
     <style name="moviePosterImage" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">60dp</item>
-        <item name="android:background">@color/white</item>
+        <item name="android:background">@color/appthm</item>
     </style>
 
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Diğer stil özellikleri -->
+        <item name="android:statusBarColor">@color/appthm</item>
+    </style>
 
 </resources>

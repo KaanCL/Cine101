@@ -63,42 +63,24 @@
                 android:orientation="horizontal" />
 
 
+
+
+
             <TextView
-                android:id="@+id/textView_inTheatre"
+                android:id="@+id/textView_onAir"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="6dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/nunito"
-                android:text="In Theatre"
+                android:text="On The Air"
                 android:textColor="#FFFFFF"
                 android:textSize="20dp" />
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_inTheatre"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal" />
-
-            <TextView
-                android:id="@+id/textView_UpComing"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="5dp"
-                android:fontFamily="@font/nunito"
-                android:text="Up Coming"
-                android:textColor="#FFFFFF"
-                android:textSize="20dp" />
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_UpComing"
+                android:id="@+id/recyclerView_onAir"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="6dp"
@@ -147,44 +129,44 @@
             android:layout_height="50dp"
             app:cardCornerRadius="20dp"
             android:background="#151415">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#151415"
-    android:layout_gravity="center"
-    >
-    <ImageView
-        android:id="@+id/movie_section"
-        android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/film"
-       android:layout_marginLeft="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#151415"
+                android:layout_gravity="center"
+                >
+                <ImageView
+                    android:id="@+id/movie_section"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/film"
+                    android:onClick="openMovie"
+                    android:layout_marginLeft="10dp"/>
 
-    <ImageView
-        android:id="@+id/serie_section"
-        android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/screen"
-        android:onClick="openSerie"
-        android:layout_marginLeft="20dp"/>
+                <ImageView
+                    android:id="@+id/serie_section"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/screen"
+                    android:layout_marginLeft="20dp"/>
 
-    <ImageView
-        android:id="@+id/cast_section"
-        android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/user"
-        android:onClick="openPeople"
-        android:layout_marginLeft="20dp"/>
+                <ImageView
+                    android:id="@+id/cast_section"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/user"
+                    android:onClick="openPeople"
+                    android:layout_marginLeft="20dp"/>
 
-    <ImageView
-        android:id="@+id/search_section"
-        android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="10dp"
-        android:onClick="openSearch"
-        android:src="@drawable/search" />
-</LinearLayout>
+                <ImageView
+                    android:id="@+id/search_section"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
+                    android:onClick="openSearch"
+                    android:src="@drawable/search" />
+            </LinearLayout>
 
 
 
