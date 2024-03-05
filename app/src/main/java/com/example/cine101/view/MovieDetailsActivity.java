@@ -1,8 +1,6 @@
 package com.example.cine101.view;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,40 +10,19 @@ import android.view.View;
 import android.content.Intent;
 import com.example.cine101.R;
 import com.example.cine101.ViewModel.MovieViewModel;
-import com.example.cine101.adapter.MovieDetailsActivity_Actor_Adapter;
+import com.example.cine101.adapter.ActorAdapter;
 import com.example.cine101.adapter.MovieDetailsActivity_Images_Adapter;
 import com.example.cine101.databinding.ActivityMovieDetailsBinding;
 import com.example.cine101.model.Cast;
-import com.example.cine101.responses.CastResponse;
 import com.example.cine101.model.Genre;
 import com.example.cine101.model.Images;
-import com.example.cine101.responses.ImagesResponse;
-import com.example.cine101.model.MovieDetails;
 import com.example.cine101.model.ProductionCompany;
-import com.example.cine101.responses.MovieResponse;
-import com.example.cine101.service.RetrofitRequest;
-import com.example.cine101.service.TmbdInterface;
 import com.example.cine101.util.Credentials;
-import com.google.gson.GsonBuilder;
-import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-import static com.example.cine101.util.Credentials.API_KEY;
-import static com.example.cine101.util.Credentials.BASE_URL;
-import static com.example.cine101.util.Credentials.MovieID;
-import static com.example.cine101.util.Credentials.language;
-import static com.example.cine101.util.Credentials.page;
-import static com.example.cine101.util.Credentials.region;
-import static  com.example.cine101.util.Credentials.Query;
-
 
 
 public class MovieDetailsActivity extends AppCompatActivity {
@@ -54,7 +31,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
      int movieId;
      RecyclerView recyclerView_cast , recyclerView_images;
 
-     MovieDetailsActivity_Actor_Adapter movieDetailsActivityActorAdapter;
+     ActorAdapter movieDetailsActivityActorAdapter;
      MovieDetailsActivity_Images_Adapter movieDetailsActivityImagesAdapter;
 
     Retrofit retrofit;
@@ -73,7 +50,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         movieId = intent.getIntExtra("movieId",-1);
 
-        Credentials.setMovieID(movieId);
+        Credentials.setID(movieId);
 
         recyclerView_cast = binding.reyclerViewCast;
         recyclerView_images = findViewById(R.id.recyclerView_images);
@@ -199,7 +176,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
             ArrayList<Cast> casts = castResponse.getCast();
 
             recyclerView_cast.setLayoutManager(new LinearLayoutManager(MovieDetailsActivity.this,LinearLayoutManager.HORIZONTAL,false));
-            movieDetailsActivityActorAdapter = new MovieDetailsActivity_Actor_Adapter(this,casts);
+            movieDetailsActivityActorAdapter = new ActorAdapter(this,casts);
             recyclerView_cast.setAdapter(movieDetailsActivityActorAdapter);
         });
     }
@@ -216,7 +193,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
                    ArrayList<Cast> casts = castResponse.getCast();
 
                    recyclerView_cast.setLayoutManager(new LinearLayoutManager(MovieDetailsActivity.this,LinearLayoutManager.HORIZONTAL,false));
-                   movieDetailsActivityActorAdapter = new MovieDetailsActivity_Actor_Adapter(casts);
+                   movieDetailsActivityActorAdapter = new ActorAdapter(casts);
                    recyclerView_cast.setAdapter(movieDetailsActivityActorAdapter);
 
                }else {

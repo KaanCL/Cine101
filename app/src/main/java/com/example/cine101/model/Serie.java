@@ -6,7 +6,7 @@ public class Serie {
     private boolean adult;
     private String backdropPath;
     private double[] genreIDS;
-    private double id;
+    private int id;
     private String[] originCountry;
     private String originalLanguage;
     private String originalName;
@@ -33,7 +33,7 @@ public class Serie {
         return genreIDS;
     }
 
-    public double getId() {
+    public int getId() {
         return id;
     }
 

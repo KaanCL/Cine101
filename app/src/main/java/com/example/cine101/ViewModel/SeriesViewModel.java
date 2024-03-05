@@ -6,22 +6,27 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.example.cine101.model.SerieDetails;
 import com.example.cine101.repository.SeriesRespository;
+import com.example.cine101.responses.CastResponse;
 import com.example.cine101.responses.SerieResponse;
+import com.example.cine101.util.Credentials;
+
 import static com.example.cine101.util.Credentials.API_KEY;
-import static com.example.cine101.util.Credentials.BASE_URL;
-import static com.example.cine101.util.Credentials.MovieID;
 import static com.example.cine101.util.Credentials.language;
 import static com.example.cine101.util.Credentials.page;
-import static com.example.cine101.util.Credentials.region;
-import static  com.example.cine101.util.Credentials.Query;
+import static com.example.cine101.util.Credentials.ID;
 
 
 public class SeriesViewModel extends AndroidViewModel {
     private SeriesRespository seriesRespository;
     private LiveData<SerieResponse> SeriesPopularLiveData ,
             SeriesTrendingLiveData , SeriesAiringLiveData ,
-            SeriesOnairLiveData, seriesTopratedLiveData;
+            SeriesOnairLiveData, seriesTopratedLiveData  ;
+
+    private LiveData<SerieDetails> serieDetailsLiveData;
+
+    private  LiveData<CastResponse> castResponseLiveData;
 
     public SeriesViewModel(@NonNull Application application) {
         super(application);
@@ -31,6 +36,9 @@ public class SeriesViewModel extends AndroidViewModel {
         SeriesAiringLiveData   = seriesRespository.getAiringSeries(API_KEY,language);
         SeriesOnairLiveData    = seriesRespository.getOnairSeries(API_KEY,language);
         seriesTopratedLiveData = seriesRespository.getTopratedSeries(API_KEY,language,page);
+        serieDetailsLiveData = seriesRespository.getSerieDetail( ID,API_KEY);
+        castResponseLiveData = seriesRespository.getCast(ID,API_KEY);
+
     }
 
     public LiveData<SerieResponse> getSeriesPopularLiveData() {return SeriesPopularLiveData;
@@ -46,5 +54,12 @@ public class SeriesViewModel extends AndroidViewModel {
     }
 
     public LiveData<SerieResponse> getSeriesTopratedLiveData() {return seriesTopratedLiveData;
+    }
+
+    public LiveData<SerieDetails> getSerieDetailsLiveData() {return serieDetailsLiveData;
+    }
+
+    public LiveData<CastResponse> getCastResponseLiveData() {
+        return castResponseLiveData;
     }
 }

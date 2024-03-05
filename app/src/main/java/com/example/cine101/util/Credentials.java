@@ -1,7 +1,5 @@
 package com.example.cine101.util;
 
-import retrofit2.Retrofit;
-
 public class Credentials {
 
     public static final String BASE_URL = "https://api.themoviedb.org/3/";
@@ -16,10 +14,14 @@ public class Credentials {
 
     public static final String time = "day";
 
-    public static int MovieID = 0;
+    public static int ID = 0;
 
-    public static void setMovieID(int movieId) {
-        Credentials.MovieID = movieId;
+    public static void setID(int ID) {
+        Credentials.ID = ID;
+    }
+
+    public static int getID() {
+        return ID;
     }
 
     public static String Query = "";

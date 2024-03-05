@@ -45,7 +45,6 @@ public class SerieActivity extends AppCompatActivity {
         seriesViewModel.getSeriesPopularLiveData().observe(this,serieResponse -> {
             series = (serieResponse.getResults());
 
-
             recyclerView_popular.setLayoutManager(new LinearLayoutManager(SerieActivity.this, LinearLayoutManager.HORIZONTAL, false));
             seriesAdapter = new SeriesAdapter(series,this);
             recyclerView_popular.setAdapter(seriesAdapter);

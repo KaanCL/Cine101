@@ -1,5 +1,6 @@
 package com.example.cine101.service;
 
+import com.example.cine101.model.SerieDetails;
 import com.example.cine101.responses.CastResponse;
 import com.example.cine101.responses.ImagesResponse;
 import com.example.cine101.model.MovieDetails;
@@ -131,6 +132,18 @@ public interface TmbdInterface {
             @Query("language") String language
     );
 
+
+    @GET("tv/{series_id}")
+    Call<SerieDetails> getSerieDetail(
+            @Path("series_id") int  series_id,
+            @Query("api_key") String apikey
+    );
+
+    @GET("tv/{series_id}/credits")
+    Call<CastResponse> getSerieCast(
+            @Path("series_id") int movie_id,
+            @Query("api_key") String apikey
+    );
 
 
 

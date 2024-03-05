@@ -31,10 +31,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.cine101.util.Credentials.API_KEY;
 import static com.example.cine101.util.Credentials.BASE_URL;
-import static com.example.cine101.util.Credentials.MovieID;
-import static com.example.cine101.util.Credentials.language;
-import static com.example.cine101.util.Credentials.page;
-import static com.example.cine101.util.Credentials.region;
 import static  com.example.cine101.util.Credentials.Query;
 
 public class SearchActivity extends AppCompatActivity {

@@ -1,10 +1,13 @@
 package com.example.cine101.responses;
 
 import com.example.cine101.model.Serie;
+import com.example.cine101.model.SerieDetails;
+
 import java.util.ArrayList;
 public class SerieResponse {
     private long page;
     private ArrayList<Serie> results;
+    private ArrayList<SerieDetails> serieDetailsResult;
     private long totalPages;
     private long totalResults;
 
@@ -23,5 +26,9 @@ public class SerieResponse {
 
     public long getTotalResults() {
         return totalResults;
+    }
+
+    public ArrayList<SerieDetails> getSerieDetailsResult() {
+        return serieDetailsResult;
     }
 }

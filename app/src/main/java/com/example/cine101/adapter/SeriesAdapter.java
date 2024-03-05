@@ -1,6 +1,7 @@
 package com.example.cine101.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.cine101.R;
 import com.example.cine101.model.Serie;
+import com.example.cine101.view.MovieDetailsActivity;
+import com.example.cine101.view.SerieDetailsActivity;
+
+import static com.example.cine101.util.Credentials.ID;
 
 import java.util.ArrayList;
 
@@ -38,6 +43,14 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.RowHolder>
     public void onBindViewHolder(@NonNull RowHolder holder, int position) {
         holder.bind(series.get(position),position);
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(holder.itemView.getContext(), SerieDetailsActivity.class);
+                intent.putExtra("serieId",series.get(position).getId());
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
@@ -12,18 +11,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.cine101.R;
 import com.example.cine101.model.Cast;
-import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class MovieDetailsActivity_Actor_Adapter  extends RecyclerView.Adapter<MovieDetailsActivity_Actor_Adapter.RowHolder> {
+public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.RowHolder> {
 
     private ArrayList<Cast> cast;
     private Context context;
 
-    public MovieDetailsActivity_Actor_Adapter( Context context ,ArrayList<Cast> cast) {
+    public ActorAdapter(Context context , ArrayList<Cast> cast) {
         this.cast=cast;
         this.context = context;
     }
@@ -37,7 +33,7 @@ public class MovieDetailsActivity_Actor_Adapter  extends RecyclerView.Adapter<Mo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MovieDetailsActivity_Actor_Adapter.RowHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ActorAdapter.RowHolder holder, int position) {
    holder.bind(cast.get(position),position);
     }
 
@@ -56,6 +52,7 @@ public class MovieDetailsActivity_Actor_Adapter  extends RecyclerView.Adapter<Mo
         }
 
         public void bind (Cast cast , Integer position){
+
             textName=itemView.findViewById(R.id.actor_name);
             textRole=itemView.findViewById(R.id.actor_role);
             brandImage=itemView.findViewById(R.id.actor_brand);
