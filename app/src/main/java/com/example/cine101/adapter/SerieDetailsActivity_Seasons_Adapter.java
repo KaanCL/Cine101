@@ -1,6 +1,7 @@
 package com.example.cine101.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,9 @@ import com.bumptech.glide.Glide;
 import com.example.cine101.R;
 import com.example.cine101.model.Season;
 import com.example.cine101.model.SerieDetails;
+import com.example.cine101.util.Credentials;
+import com.example.cine101.view.SeasonDetailsActivity;
+import com.example.cine101.view.SerieDetailsActivity;
 
 import java.util.ArrayList;
 
@@ -27,7 +31,6 @@ public class SerieDetailsActivity_Seasons_Adapter extends RecyclerView.Adapter<S
         this.context = context;
     }
 
-
     @NonNull
     @Override
     public RowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -39,6 +42,22 @@ public class SerieDetailsActivity_Seasons_Adapter extends RecyclerView.Adapter<S
     @Override
     public void onBindViewHolder(@NonNull SerieDetailsActivity_Seasons_Adapter.RowHolder holder, int position) {
      holder.bind(seasons.get(position),position);
+
+     holder.itemView.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+             Intent intent = new Intent(holder.itemView.getContext(), SeasonDetailsActivity.class);
+             Credentials.setSeasonNumber(seasons.get(position).getSeasonNumber());
+             intent.putExtra("episodeCount",seasons.get(position).getEpisodeCount());
+             System.out.println(seasons.get(position).getEpisodeCount());
+             holder.itemView.getContext().startActivity(intent);
+         }
+     });
+
+
+
+     //name , overview , voteAverage , posterPath , episodeCount
+
 
     }
 

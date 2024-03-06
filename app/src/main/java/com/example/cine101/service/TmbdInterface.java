@@ -1,5 +1,6 @@
 package com.example.cine101.service;
 
+import com.example.cine101.model.SeasonDetails;
 import com.example.cine101.model.SerieDetails;
 import com.example.cine101.responses.CastResponse;
 import com.example.cine101.responses.ImagesResponse;
@@ -145,7 +146,12 @@ public interface TmbdInterface {
             @Query("api_key") String apikey
     );
 
-
-
+    @GET("tv/{series_id}/season/{season_number}")
+    Call<SeasonDetails> getSeasonDetail(
+            @Path("series_id") int series_id,
+            @Path("season_number") int season_number,
+            @Query("api_key") String apikey,
+            @Query("language") String language
+    );
 
 }

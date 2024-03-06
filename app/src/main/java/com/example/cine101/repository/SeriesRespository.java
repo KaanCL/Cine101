@@ -9,6 +9,7 @@ import static com.example.cine101.util.Credentials.region;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.cine101.model.SeasonDetails;
 import com.example.cine101.model.SerieDetails;
 import com.example.cine101.responses.CastResponse;
 import com.example.cine101.responses.SerieResponse;
@@ -98,15 +99,13 @@ public class SeriesRespository {
 
                         if(response.isSuccessful()){
                             data.setValue(response.body());
-                            System.out.println(response.body().getName());
-                        }
-                        System.out.println("hata" + response.code());
+                            System.out.println(response.body().getId());
 
+                        }
                     }
 
                     @Override
                     public void onFailure(Call<SerieDetails> call, Throwable t) {
-                        System.out.println("hata" + t);
                     }
                 });
        return data;
@@ -132,10 +131,26 @@ public class SeriesRespository {
         return data;
     }
 
+   public LiveData<SeasonDetails> getSeasonDetail(int seriesId , int seasonId , String apikey , String language){
+        final MutableLiveData<SeasonDetails> data = new MutableLiveData<>();
+
+        tmbdInterface.getSeasonDetail(seriesId,seasonId,apikey,language)
+                .enqueue(new Callback<SeasonDetails>() {
+                    @Override
+                    public void onResponse(Call<SeasonDetails> call, Response<SeasonDetails> response) {
+                        if(response.isSuccessful()){
+                            data.setValue(response.body());
+                        }
+                        System.out.println("hata:" + response.code());
+                    }
+
+                    @Override
+                    public void onFailure(Call<SeasonDetails> call, Throwable t) {
+                        System.out.println("hatas" + t);
+                    }
+                });
 
 
-
-
-
-
+         return data;
+    }
 }

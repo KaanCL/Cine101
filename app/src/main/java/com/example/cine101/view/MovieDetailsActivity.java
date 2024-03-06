@@ -48,9 +48,9 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        movieId = intent.getIntExtra("movieId",-1);
+       // movieId = intent.getIntExtra("movieId",-1);
 
-        Credentials.setID(movieId);
+     //   Credentials.setID(movieId);
 
         recyclerView_cast = binding.reyclerViewCast;
         recyclerView_images = findViewById(R.id.recyclerView_images);

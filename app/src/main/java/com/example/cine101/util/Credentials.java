@@ -14,9 +14,13 @@ public class Credentials {
 
     public static final String time = "day";
 
-    public static int ID = 0;
+    public static  int ID = 0;
 
-    public static void setID(int ID) {
+    public static  int seasonNumber=0;
+
+    public static String brand ="";
+
+     public static void setID(int ID) {
         Credentials.ID = ID;
     }
 
@@ -26,7 +30,25 @@ public class Credentials {
 
     public static String Query = "";
 
+    public static String getBrand() {
+        return brand;
+    }
+
+    public static void setBrand(String brand) {
+        Credentials.brand = brand;
+    }
+
     public static void setQuery(String query) {
         Query = query;
     }
+
+    public static void setSeasonNumber(double seasonNumber) {
+        Credentials.seasonNumber = (int) seasonNumber;
+    }
+
+    public static int getSeasonNumber() {
+        return seasonNumber;
+    }
+
+
 }

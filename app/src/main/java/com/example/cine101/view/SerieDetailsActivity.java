@@ -21,11 +21,7 @@ import com.example.cine101.model.ProductionCompany;
 import com.example.cine101.model.Season;
 import com.example.cine101.util.Credentials;
 import com.squareup.picasso.Picasso;
-import static com.example.cine101.util.Credentials.API_KEY;
-import static com.example.cine101.util.Credentials.BASE_URL;
-import static com.example.cine101.util.Credentials.language;
-import static com.example.cine101.util.Credentials.page;
-import static com.example.cine101.util.Credentials.region;
+
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -54,9 +50,9 @@ public class SerieDetailsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        serieId = intent.getIntExtra("serieId",-1);
+        //serieId = intent.getIntExtra("serieId",-1);
 
-        Credentials.setID(serieId);
+        //Credentials.setID(serieId);
 
         seriesViewModel = new ViewModelProvider(this).get(SeriesViewModel.class);
 
@@ -76,8 +72,6 @@ public class SerieDetailsActivity extends AppCompatActivity {
             String serieType_Text ="";
             String serieProduction_Text ="";
             String networks_Text="";
-
-
 
 
             for(Genre e: genres){
@@ -103,6 +97,7 @@ public class SerieDetailsActivity extends AppCompatActivity {
             binding.rateText.setText(formattedRate);
             Picasso.get().load("https://image.tmdb.org/t/p/original" + serieDetails.getBackdropPath()).into(binding.serieBrand);
             Picasso.get().load("https://image.tmdb.org/t/p/original" + serieDetails.getPosterPath()).into(binding.seriePoster);
+            Credentials.setBrand(serieDetails.getBackdropPath());
             binding.serieTitle.setText(serieDetails.getName());
             binding.serieType.setText(serieType_Text);
             binding.serieTagline.setText(serieDetails.getTagline());

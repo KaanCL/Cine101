@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.cine101.R;
 import com.example.cine101.model.Serie;
+import com.example.cine101.util.Credentials;
 import com.example.cine101.view.MovieDetailsActivity;
 import com.example.cine101.view.SerieDetailsActivity;
 
@@ -48,6 +49,7 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.RowHolder>
             public void onClick(View v) {
                 Intent intent = new Intent(holder.itemView.getContext(), SerieDetailsActivity.class);
                 intent.putExtra("serieId",series.get(position).getId());
+                Credentials.setID(series.get(position).getId());
                 holder.itemView.getContext().startActivity(intent);
             }
         });

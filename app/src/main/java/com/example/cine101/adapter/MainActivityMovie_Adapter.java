@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cine101.R;
 import com.example.cine101.model.Movie;
+import com.example.cine101.util.Credentials;
 import com.example.cine101.view.MovieDetailsActivity;
 
 import java.util.ArrayList;
@@ -44,6 +45,7 @@ public class MainActivityMovie_Adapter extends RecyclerView.Adapter<MainActivity
          public void onClick(View v) {
              Intent intent = new Intent(holder.itemView.getContext(), MovieDetailsActivity.class);
              intent.putExtra("movieId",movies.get(position).getId());
+             Credentials.setID(movies.get(position).getId());
              holder.itemView.getContext().startActivity(intent);
 
          }
