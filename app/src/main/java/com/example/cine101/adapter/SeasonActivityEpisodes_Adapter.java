@@ -78,8 +78,12 @@ public class SeasonActivityEpisodes_Adapter extends RecyclerView.Adapter<SeasonA
             Rate_Text.setText(formattedRate);
             Year_Text.setText(episodes.getAir_date());
             Minute_Text.setText(formattedRate + "m");
-            Overview_Text.setText(episodes.getOverview());
 
+            String overview = episodes.getOverview();
+            if (overview.length() > 120) {
+                overview = overview.substring(0, 120) + "...";
+            }
+            Overview_Text.setText(overview);
             Glide.with(context)
                     .load("https://image.tmdb.org/t/p/original" + episodes.getStill_path())
                     .into(brand);

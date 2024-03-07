@@ -70,8 +70,16 @@ public class SeasonDetailsActivity extends AppCompatActivity {
            binding.seasonTitle.setText(seasonDetails.getName());
            binding.rateText.setText(formattedRate);
            binding.seasonYear.setText(seasonDetails.getAir_date());
-           binding.seasonOverview.setText(seasonDetails.getOverview());
+
+           System.out.println("overview"+seasonDetails.getOverview());
+           if(seasonDetails.getOverview()!=""){
+               binding.textView6.setText("Overview");
+               binding.textView6.setVisibility(1);
+               binding.seasonOverview.setText(seasonDetails.getOverview());
+           }
+
            episodes = seasonDetails.getEpisodes();
+          binding.seasonEpisodes.setText(String.valueOf(episodes.size()));
            recyclerView_episodes.setLayoutManager(new LinearLayoutManager(SeasonDetailsActivity.this,LinearLayoutManager.VERTICAL,false));
            seasonActivityEpisodesAdapter = new SeasonActivityEpisodes_Adapter(episodes,this);
            recyclerView_episodes.setAdapter(seasonActivityEpisodesAdapter);
