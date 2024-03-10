@@ -2,6 +2,7 @@ package com.example.cine101.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +63,7 @@ public class MainActivityMovie_Adapter extends RecyclerView.Adapter<MainActivity
         TextView textTitle ;
         TextView rateTitle;
         ImageView brandImage ;
+        ImageView rateImage;
 
 
         public RowHolder(@NonNull View itemView) {
@@ -74,6 +76,7 @@ public class MainActivityMovie_Adapter extends RecyclerView.Adapter<MainActivity
 
             String rate =Double.toString(movie.getVoteAverage());
             String formattedRate = String.format("%.1f", Double.parseDouble(rate));
+            System.out.println("FormattedRate"+formattedRate);
 
           /* for(int i = 0 ; i<rate.length();i++){
                e+=rate.charAt(i);
@@ -81,20 +84,20 @@ public class MainActivityMovie_Adapter extends RecyclerView.Adapter<MainActivity
                    break;
                }
            }*/
+
             textTitle = itemView.findViewById(R.id.title_text);
             rateTitle = itemView.findViewById(R.id.rate_text);
             brandImage = itemView.findViewById(R.id.brand_image);
+            rateImage = itemView.findViewById(R.id.imageView_rate);
 
             rateTitle.setText(formattedRate);
+
             textTitle.setText(movie.getTitle());
           //Picasso.get().load("https://image.tmdb.org/t/p/original" + movie.getPosterPath()).into(brandImage);
             Glide.with(context)
                     .load("https://image.tmdb.org/t/p/original" + movie.getPosterPath())
                     .into(brandImage);
-
         }
-
         }
-
     }
 }

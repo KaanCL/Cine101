@@ -77,7 +77,7 @@ public class SeasonActivityEpisodes_Adapter extends RecyclerView.Adapter<SeasonA
             Title_Text.setText(episodes.getName());
             Rate_Text.setText(formattedRate);
             Year_Text.setText(episodes.getAir_date());
-            Minute_Text.setText(formattedRate + "m");
+            Minute_Text.setText(formattedRuntime + "m");
 
             String overview = episodes.getOverview();
             if (overview.length() > 120) {

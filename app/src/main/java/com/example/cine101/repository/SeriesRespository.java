@@ -153,4 +153,28 @@ public class SeriesRespository {
 
          return data;
     }
+
+    public LiveData<SerieResponse> getSerieSearchResult(String apikey , String query){
+
+        final MutableLiveData<SerieResponse> data = new MutableLiveData<>();
+        tmbdInterface.getSearchSerie(apikey,query)
+                .enqueue(new Callback<SerieResponse>() {
+                    @Override
+                    public void onResponse(Call<SerieResponse> call, Response<SerieResponse> response) {
+                        if (response.isSuccessful() || response.code()==200){
+                            data.setValue(response.body());
+                        }
+                        else {
+                            System.out.println("SerieSearch hata: " + response.code());
+
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<SerieResponse> call, Throwable t) {
+                        System.out.println("SerieSearch hata: " + t);
+                    }
+                });
+        return  data;
+    }
+
 }

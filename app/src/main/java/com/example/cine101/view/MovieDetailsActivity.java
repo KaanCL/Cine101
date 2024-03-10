@@ -81,6 +81,14 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 movieProduction_Text+=e.getName() + " ";
             }
 
+            String saat =String.valueOf( movieDetails.getRuntime() / 60);
+            String dakika = String.valueOf(movieDetails.getRuntime() % 60);
+
+            String runtime = saat +"h"+dakika+"m";
+
+
+
+
             String rate =Double.toString(movieDetails.getVote_average());
             String formattedRate = String.format("%.1f", Double.parseDouble(rate));
 
@@ -98,7 +106,12 @@ public class MovieDetailsActivity extends AppCompatActivity {
             Picasso.get().load("https://image.tmdb.org/t/p/original" + movieDetails.getPoster_path()).into(binding.moviePoster);
             binding.movieTitle.setText(movieDetails.getTitle());
             binding.movieType.setText(movieType_Text);
-            binding.movieTagline.setText(movieDetails.getTagline());
+            binding.movieRuntime.setText(runtime);
+            String tagline = movieDetails.getTagline();
+            if (tagline.length() > 70) {
+                tagline = tagline.substring(0, 70) + "...";
+            }
+            binding.movieTagline.setText(tagline);
             binding.movieOverview.setText(movieDetails.getOverview());
             binding.movieStatus.setText(movieDetails.getStatus());
             binding.movieDate.setText(movieDetails.getRelease_date());

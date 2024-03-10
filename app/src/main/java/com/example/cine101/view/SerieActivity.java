@@ -99,6 +99,11 @@ public class SerieActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openSearch(View view) {
+        Intent intent = new Intent(SerieActivity.this, SearchActivity.class);
+        startActivity(intent);
+    }
+
 
 
 

@@ -154,4 +154,10 @@ public interface TmbdInterface {
             @Query("language") String language
     );
 
+    @GET("search/tv")
+    Call<SerieResponse> getSearchSerie(
+            @Query("api_key") String apikey,
+            @Query("query") String query
+    );
+
 }

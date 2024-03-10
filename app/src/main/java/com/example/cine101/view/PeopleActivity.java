@@ -86,7 +86,9 @@ public class PeopleActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-
+    public void openSearch(View view) {
+        Intent intent = new Intent(PeopleActivity.this, SearchActivity.class);
+        startActivity(intent);
+    }
 
 }

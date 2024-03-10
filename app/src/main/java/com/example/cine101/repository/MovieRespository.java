@@ -250,7 +250,7 @@ public void clear(){
 
     }
 
-    public LiveData<MovieResponse> getSearchResult(String apikey , String query){
+    public LiveData<MovieResponse> getMovieSearchResult(String apikey , String query){
         final MutableLiveData<MovieResponse> data = new MutableLiveData<>();
         tmbdInterface.getSearchResult(apikey , query)
                 .enqueue(new Callback<MovieResponse>() {

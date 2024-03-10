@@ -38,7 +38,7 @@ public class MovieViewModel extends AndroidViewModel {
         getMovieDetailsLiveData = movieRespository.getMovieDetails(ID,API_KEY);
         getCastLiveData = movieRespository.getCast(ID,API_KEY);
         getMovieImagesLiveData = movieRespository.getMovieImages(ID,API_KEY);
-        getMovieSearchResult = movieRespository.getSearchResult(API_KEY , Query);
+        getMovieSearchResult = movieRespository.getMovieSearchResult(API_KEY , Query);
 
 
     }

@@ -65,8 +65,9 @@
             android:fontFamily="@font/nunito"
             android:textColor="#FFFF"
             android:textSize="11dp" />
+
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imageView_rate"
             android:layout_width="14dp"
             android:layout_height="15dp"
             android:src="@drawable/star"
