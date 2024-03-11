@@ -1,7 +1,7 @@
 package com.example.cine101.responses;
 
-import com.example.cine101.model.Serie;
-import com.example.cine101.model.SerieDetails;
+import com.example.cine101.model.Tmdb.Serie;
+import com.example.cine101.model.Tmdb.SerieDetails;
 
 import java.util.ArrayList;
 public class SerieResponse {

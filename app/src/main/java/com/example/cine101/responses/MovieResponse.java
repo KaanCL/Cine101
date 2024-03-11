@@ -1,8 +1,8 @@
 package com.example.cine101.responses;
 
-import com.example.cine101.model.Movie;
-import com.example.cine101.model.MovieDetails;
-import com.example.cine101.model.People;
+import com.example.cine101.model.Tmdb.Movie;
+import com.example.cine101.model.Tmdb.MovieDetails;
+import com.example.cine101.model.Tmdb.People;
 
 import java.util.ArrayList;
 

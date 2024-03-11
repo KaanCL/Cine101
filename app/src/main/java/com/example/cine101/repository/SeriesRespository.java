@@ -1,16 +1,10 @@
 package com.example.cine101.repository;
 
-import static com.example.cine101.util.Credentials.API_KEY;
-import static com.example.cine101.util.Credentials.BASE_URL;
-import static com.example.cine101.util.Credentials.language;
-import static com.example.cine101.util.Credentials.page;
-import static com.example.cine101.util.Credentials.region;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.cine101.model.SeasonDetails;
-import com.example.cine101.model.SerieDetails;
+import com.example.cine101.model.Tmdb.SeasonDetails;
+import com.example.cine101.model.Tmdb.SerieDetails;
 import com.example.cine101.responses.CastResponse;
 import com.example.cine101.responses.SerieResponse;
 import com.example.cine101.service.RetrofitRequest;

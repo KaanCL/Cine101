@@ -9,11 +9,9 @@ import com.bumptech.glide.Glide;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewbinding.ViewBinding;
 
 import com.example.cine101.R;
-import com.example.cine101.model.Images;
-import com.squareup.picasso.Picasso;
+import com.example.cine101.model.Tmdb.Images;
 
 import java.util.ArrayList;
 

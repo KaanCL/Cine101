@@ -12,7 +12,7 @@ import android.view.View;
 import com.example.cine101.R;
 import com.example.cine101.ViewModel.SeriesViewModel;
 import com.example.cine101.adapter.SeriesAdapter;
-import com.example.cine101.model.Serie;
+import com.example.cine101.model.Tmdb.Serie;
 
 import java.util.ArrayList;
 

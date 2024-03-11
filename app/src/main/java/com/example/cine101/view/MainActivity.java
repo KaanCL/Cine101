@@ -12,7 +12,7 @@ import android.view.View;
 import com.example.cine101.R;
 import com.example.cine101.ViewModel.MovieViewModel;
 import com.example.cine101.adapter.MainActivityMovie_Adapter;
-import com.example.cine101.model.Movie;
+import com.example.cine101.model.Tmdb.Movie;
 
 import java.util.ArrayList;
 
@@ -40,9 +40,9 @@ public class MainActivity extends AppCompatActivity {
         movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
 
 
-        // getSearch_popular(API_KEY, language, page, region);
-        //  getSearch_Trending(API_KEY, language);
-        // getSearch_inTheatre(API_KEY, language, page, region);
+        // getSearch_popular(API_KEY_TMDB, language, page, region);
+        //  getSearch_Trending(API_KEY_TMDB, language);
+        // getSearch_inTheatre(API_KEY_TMDB, language, page, region);
 
         getMovie_Popular();
         getMovie_Trending();
@@ -105,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
             recyclerView_toprated.setAdapter(mainActivityMovieAdapter);
         });
     }
-
 
     public void openSearch(View view) {
         Intent intent = new Intent(MainActivity.this, SearchActivity.class);

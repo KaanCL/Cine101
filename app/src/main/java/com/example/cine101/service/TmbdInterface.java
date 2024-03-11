@@ -1,10 +1,10 @@
 package com.example.cine101.service;
 
-import com.example.cine101.model.SeasonDetails;
-import com.example.cine101.model.SerieDetails;
+import com.example.cine101.model.Tmdb.SeasonDetails;
+import com.example.cine101.model.Tmdb.SerieDetails;
 import com.example.cine101.responses.CastResponse;
 import com.example.cine101.responses.ImagesResponse;
-import com.example.cine101.model.MovieDetails;
+import com.example.cine101.model.Tmdb.MovieDetails;
 import com.example.cine101.responses.MovieResponse;
 import com.example.cine101.responses.PeopleResponse;
 import com.example.cine101.responses.SerieResponse;
@@ -14,8 +14,6 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-
-import static com.example.cine101.util.Credentials.API_KEY;
 
 public interface TmbdInterface {
 

@@ -2,9 +2,17 @@ package com.example.cine101.util;
 
 public class Credentials {
 
-    public static final String BASE_URL = "https://api.themoviedb.org/3/";
+    public static final String BASE_URL_TMBD = "https://api.themoviedb.org/3/";
 
-    public static final String API_KEY = "a42d32093e92ce5fc7277b527e8734b7";
+    public static final String BASE_URL_YOUTUBE ="https://www.googleapis.com/youtube/v3/";
+
+    public static final String API_KEY_TMDB = "a42d32093e92ce5fc7277b527e8734b7";
+
+    public static final String API_KEY_YOUTUBE="AIzaSyAr8u6IkvVJRO_AJkhffuOJ9nkVjS6BzjM";
+
+    public static final String part ="Snippet";
+
+    public static final String Video_Id = "hUbIsfzOjk4";
 
     public static final int page = 1;
 

@@ -9,7 +9,7 @@ import androidx.lifecycle.LiveData;
 import com.example.cine101.repository.PeopleRespository;
 import com.example.cine101.responses.PeopleResponse;
 
-import static com.example.cine101.util.Credentials.API_KEY;
+import static com.example.cine101.util.Credentials.API_KEY_TMDB;
 import static com.example.cine101.util.Credentials.language;
 
 public class PeopleViewModel extends AndroidViewModel {
@@ -20,8 +20,8 @@ public class PeopleViewModel extends AndroidViewModel {
     public PeopleViewModel(@NonNull Application application) {
         super(application);
         peopleRespository = new PeopleRespository();
-        PeoplePopularLiveData = peopleRespository.getPopularPeople(API_KEY,language);
-        PeopleTrendingLiveData = peopleRespository.getTrendingPeople(API_KEY,language);
+        PeoplePopularLiveData = peopleRespository.getPopularPeople(API_KEY_TMDB,language);
+        PeopleTrendingLiveData = peopleRespository.getTrendingPeople(API_KEY_TMDB,language);
     }
 
     public LiveData<PeopleResponse> getPeoplePopularLiveData() {return PeoplePopularLiveData;

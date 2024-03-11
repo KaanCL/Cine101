@@ -13,11 +13,10 @@ import com.example.cine101.ViewModel.MovieViewModel;
 import com.example.cine101.adapter.ActorAdapter;
 import com.example.cine101.adapter.MovieDetailsActivity_Images_Adapter;
 import com.example.cine101.databinding.ActivityMovieDetailsBinding;
-import com.example.cine101.model.Cast;
-import com.example.cine101.model.Genre;
-import com.example.cine101.model.Images;
-import com.example.cine101.model.ProductionCompany;
-import com.example.cine101.util.Credentials;
+import com.example.cine101.model.Tmdb.Cast;
+import com.example.cine101.model.Tmdb.Genre;
+import com.example.cine101.model.Tmdb.Images;
+import com.example.cine101.model.Tmdb.ProductionCompany;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -194,6 +193,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         });
     }
 
+
   /* public void getMovieCast(String apikey , int id) {
        TmbdInterface tmbdInterface = retrofit.create(TmbdInterface.class);
        Call<CastResponse> call = tmbdInterface.getCast(id, apikey);
@@ -230,6 +230,22 @@ public class MovieDetailsActivity extends AppCompatActivity {
             movieDetailsActivityImagesAdapter = new MovieDetailsActivity_Images_Adapter(this,images);
             recyclerView_images.setAdapter(movieDetailsActivityImagesAdapter);
         });}
+
+    public void getMovieVideos(){
+        movieViewModel.getGetVideoLiveData().observe(this,video -> {
+
+
+
+
+
+
+
+
+
+        });
+    }
+
+
    /*public void getMovieImages(String apikey ,int id){
        TmbdInterface tmbdInterface = retrofit.create(TmbdInterface.class);
        Call<ImagesResponse> call = tmbdInterface.getBackdrop(id,apikey);

@@ -9,21 +9,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.cine101.R;
 import com.example.cine101.ViewModel.SeriesViewModel;
 import com.example.cine101.adapter.SeasonActivityEpisodes_Adapter;
-import com.example.cine101.adapter.SerieDetailsActivity_Seasons_Adapter;
 import com.example.cine101.databinding.ActivitySeasonDetailsBinding;
-import com.example.cine101.model.Episodes;
+import com.example.cine101.model.Tmdb.Episodes;
 import com.example.cine101.util.Credentials;
 import com.squareup.picasso.Picasso;
 
-import static com.example.cine101.util.Credentials.API_KEY;
-import static com.example.cine101.util.Credentials.BASE_URL;
-import static com.example.cine101.util.Credentials.language;
-import static com.example.cine101.util.Credentials.page;
-import static com.example.cine101.util.Credentials.region;
-import static com.example.cine101.util.Credentials.seasonNumber;
 import static com.example.cine101.util.Credentials.brand;
 
 import java.util.ArrayList;

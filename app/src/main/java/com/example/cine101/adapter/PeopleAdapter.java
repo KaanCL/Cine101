@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.cine101.R;
-import com.example.cine101.model.People;
+import com.example.cine101.model.Tmdb.People;
 
 import java.util.ArrayList;
 

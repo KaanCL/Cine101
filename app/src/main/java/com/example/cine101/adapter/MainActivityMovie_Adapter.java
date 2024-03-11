@@ -2,7 +2,6 @@ package com.example.cine101.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cine101.R;
-import com.example.cine101.model.Movie;
+import com.example.cine101.model.Tmdb.Movie;
 import com.example.cine101.util.Credentials;
 import com.example.cine101.view.MovieDetailsActivity;
 
@@ -76,7 +75,6 @@ public class MainActivityMovie_Adapter extends RecyclerView.Adapter<MainActivity
 
             String rate =Double.toString(movie.getVoteAverage());
             String formattedRate = String.format("%.1f", Double.parseDouble(rate));
-            System.out.println("FormattedRate"+formattedRate);
 
           /* for(int i = 0 ; i<rate.length();i++){
                e+=rate.charAt(i);

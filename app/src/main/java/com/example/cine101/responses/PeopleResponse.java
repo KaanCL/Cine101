@@ -1,7 +1,6 @@
 package com.example.cine101.responses;
 
-import com.example.cine101.model.Cast;
-import com.example.cine101.model.People;
+import com.example.cine101.model.Tmdb.People;
 
 import java.util.ArrayList;
 

@@ -6,14 +6,13 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.cine101.model.SeasonDetails;
-import com.example.cine101.model.SerieDetails;
+import com.example.cine101.model.Tmdb.SeasonDetails;
+import com.example.cine101.model.Tmdb.SerieDetails;
 import com.example.cine101.repository.SeriesRespository;
 import com.example.cine101.responses.CastResponse;
 import com.example.cine101.responses.SerieResponse;
-import com.example.cine101.util.Credentials;
 
-import static com.example.cine101.util.Credentials.API_KEY;
+import static com.example.cine101.util.Credentials.API_KEY_TMDB;
 import static com.example.cine101.util.Credentials.Query;
 import static com.example.cine101.util.Credentials.language;
 import static com.example.cine101.util.Credentials.page;
@@ -36,15 +35,15 @@ public class SeriesViewModel extends AndroidViewModel {
     public SeriesViewModel(@NonNull Application application) {
         super(application);
         seriesRespository = new SeriesRespository();
-        SeriesPopularLiveData  = seriesRespository.getPopularSeries(API_KEY,language,page);
-        SeriesTrendingLiveData =  seriesRespository.getTrendingSeries(API_KEY,language);
-        SeriesAiringLiveData   = seriesRespository.getAiringSeries(API_KEY,language);
-        SeriesOnairLiveData    = seriesRespository.getOnairSeries(API_KEY,language);
-        seriesTopratedLiveData = seriesRespository.getTopratedSeries(API_KEY,language,page);
-        serieDetailsLiveData = seriesRespository.getSerieDetail( ID,API_KEY);
-        castResponseLiveData = seriesRespository.getCast(ID,API_KEY);
-        seasonDetailsLiveData = seriesRespository.getSeasonDetail(ID,seasonNumber,API_KEY,language);
-        serieSearchResult = seriesRespository.getSerieSearchResult(API_KEY,Query);
+        SeriesPopularLiveData  = seriesRespository.getPopularSeries(API_KEY_TMDB,language,page);
+        SeriesTrendingLiveData =  seriesRespository.getTrendingSeries(API_KEY_TMDB,language);
+        SeriesAiringLiveData   = seriesRespository.getAiringSeries(API_KEY_TMDB,language);
+        SeriesOnairLiveData    = seriesRespository.getOnairSeries(API_KEY_TMDB,language);
+        seriesTopratedLiveData = seriesRespository.getTopratedSeries(API_KEY_TMDB,language,page);
+        serieDetailsLiveData = seriesRespository.getSerieDetail( ID, API_KEY_TMDB);
+        castResponseLiveData = seriesRespository.getCast(ID, API_KEY_TMDB);
+        seasonDetailsLiveData = seriesRespository.getSeasonDetail(ID,seasonNumber, API_KEY_TMDB,language);
+        serieSearchResult = seriesRespository.getSerieSearchResult(API_KEY_TMDB,Query);
     }
 
     public LiveData<SerieResponse> getSeriesPopularLiveData() {return SeriesPopularLiveData;}

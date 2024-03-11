@@ -12,9 +12,7 @@ import android.view.View;
 import com.example.cine101.R;
 import com.example.cine101.ViewModel.PeopleViewModel;
 import com.example.cine101.adapter.PeopleAdapter;
-import com.example.cine101.adapter.SeriesAdapter;
-import com.example.cine101.model.Cast;
-import com.example.cine101.model.People;
+import com.example.cine101.model.Tmdb.People;
 
 import java.util.ArrayList;
 

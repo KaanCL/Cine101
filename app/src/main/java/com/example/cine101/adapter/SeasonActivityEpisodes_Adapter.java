@@ -1,7 +1,6 @@
 package com.example.cine101.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.cine101.R;
-import com.example.cine101.model.Episodes;
-import com.example.cine101.model.Season;
-import com.example.cine101.model.SeasonDetails;
+import com.example.cine101.model.Tmdb.Episodes;
 
 import java.util.ArrayList;
 

@@ -13,12 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.cine101.R;
-import com.example.cine101.model.Serie;
+import com.example.cine101.model.Tmdb.Serie;
 import com.example.cine101.util.Credentials;
-import com.example.cine101.view.MovieDetailsActivity;
 import com.example.cine101.view.SerieDetailsActivity;
-
-import static com.example.cine101.util.Credentials.ID;
 
 import java.util.ArrayList;
 

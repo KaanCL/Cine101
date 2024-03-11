@@ -2,33 +2,19 @@ package com.example.cine101.repository;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.cine101.adapter.MainActivityMovie_Adapter;
-import com.example.cine101.model.Movie;
-import com.example.cine101.model.MovieDetails;
+import com.example.cine101.model.Tmdb.MovieDetails;
+import com.example.cine101.model.Youtube.Items;
+import com.example.cine101.model.Youtube.Snippet;
+import com.example.cine101.model.Youtube.Video;
 import com.example.cine101.responses.CastResponse;
 import com.example.cine101.responses.ImagesResponse;
 import com.example.cine101.responses.MovieResponse;
 import com.example.cine101.service.RetrofitRequest;
 import com.example.cine101.service.TmbdInterface;
-import com.example.cine101.view.MainActivity;
-
-import static com.example.cine101.util.Credentials.API_KEY;
-import static com.example.cine101.util.Credentials.BASE_URL;
-import static com.example.cine101.util.Credentials.language;
-import static com.example.cine101.util.Credentials.page;
-import static com.example.cine101.util.Credentials.region;
-
-import io.reactivex.disposables.Disposable;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-
-import android.util.Log;
-
-import org.intellij.lang.annotations.Language;
+import com.example.cine101.service.YoutubeInterface;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,12 +26,14 @@ import io.reactivex.disposables.CompositeDisposable;
 public class MovieRespository {
     public static final String TAG = MovieRespository.class.getSimpleName();
     private TmbdInterface tmbdInterface;
+    private YoutubeInterface youtubeInterface;
     private CompositeDisposable compositeDisposable;
 
 
 
     public MovieRespository() {
         tmbdInterface = RetrofitRequest.getRetrofitInstance().create(TmbdInterface.class);
+        youtubeInterface = RetrofitRequest.getRetrofitInstance2().create(YoutubeInterface.class);
         compositeDisposable = new CompositeDisposable();
 
     }
@@ -267,6 +255,36 @@ public void clear(){
                     }
                 });
         return  data;
+    }
+
+    public LiveData<Video> getMovieVideos(String videoId , String part ,String apiKey){
+        final MutableLiveData<Video> data = new MutableLiveData<>();
+        youtubeInterface.getmovieVideos(videoId,part,apiKey)
+                .enqueue(new Callback<Video>() {
+                    @Override
+                    public void onResponse(Call<Video> call, Response<Video> response) {
+                        if(response.isSuccessful()){
+                            data.setValue(response.body());
+                            Items[] items =(response.body().getItems());
+                            System.out.println(items);
+                            for (Items e :items){
+                                System.out.println(e.getSnippet().title);
+
+                            }
+
+                        }
+                        else {
+                            System.out.println("Video hata" + response.code());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Video> call, Throwable t) {
+                        System.out.println("Video hata" + t);
+                    }
+                });
+       return  data;
+
     }
 
 

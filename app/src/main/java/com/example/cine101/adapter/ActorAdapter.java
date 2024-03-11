@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.cine101.R;
-import com.example.cine101.model.Cast;
+import com.example.cine101.model.Tmdb.Cast;
 
 import java.util.ArrayList;
 

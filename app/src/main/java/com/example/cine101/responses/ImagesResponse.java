@@ -1,6 +1,6 @@
 package com.example.cine101.responses;
 
-import com.example.cine101.model.Images;
+import com.example.cine101.model.Tmdb.Images;
 
 import java.util.ArrayList;
 

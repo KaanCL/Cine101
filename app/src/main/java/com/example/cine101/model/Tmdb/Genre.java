@@ -1,4 +1,4 @@
-package com.example.cine101.model;
+package com.example.cine101.model.Tmdb;
 import com.google.gson.annotations.SerializedName;
 public class Genre {
     @SerializedName("id")

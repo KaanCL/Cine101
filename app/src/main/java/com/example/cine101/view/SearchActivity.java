@@ -15,8 +15,8 @@ import com.example.cine101.ViewModel.MovieViewModel;
 import com.example.cine101.adapter.MainActivityMovie_Adapter;
 import com.example.cine101.adapter.SeriesAdapter;
 import com.example.cine101.databinding.ActivitySearchBinding;
-import com.example.cine101.model.Movie;
-import com.example.cine101.model.Serie;
+import com.example.cine101.model.Tmdb.Movie;
+import com.example.cine101.model.Tmdb.Serie;
 import com.example.cine101.responses.MovieResponse;
 import com.example.cine101.responses.SerieResponse;
 import com.example.cine101.service.TmbdInterface;
@@ -32,8 +32,8 @@ import io.reactivex.disposables.CompositeDisposable;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.example.cine101.util.Credentials.API_KEY;
-import static com.example.cine101.util.Credentials.BASE_URL;
+import static com.example.cine101.util.Credentials.API_KEY_TMDB;
+import static com.example.cine101.util.Credentials.BASE_URL_TMBD;
 import static  com.example.cine101.util.Credentials.Query;
 
 public class SearchActivity extends AppCompatActivity {
@@ -66,7 +66,7 @@ public class SearchActivity extends AppCompatActivity {
         Gson gson = new GsonBuilder().setLenient().create();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(BASE_URL_TMBD)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
@@ -79,8 +79,8 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 Credentials.setQuery(newText);
-                getMovieSearch_Result(API_KEY,Query);
-                getSerieSearch_Result(API_KEY,Query);
+                getMovieSearch_Result(API_KEY_TMDB,Query);
+                getSerieSearch_Result(API_KEY_TMDB,Query);
                 return true;
 
             }

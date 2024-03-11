@@ -13,12 +13,12 @@ import com.example.cine101.ViewModel.SeriesViewModel;
 import com.example.cine101.adapter.ActorAdapter;
 import com.example.cine101.adapter.SerieDetailsActivity_Seasons_Adapter;
 import com.example.cine101.databinding.ActivitySerieDetailsBinding;
-import com.example.cine101.model.Cast;
-import com.example.cine101.model.CreatedBy;
-import com.example.cine101.model.Genre;
-import com.example.cine101.model.Networks;
-import com.example.cine101.model.ProductionCompany;
-import com.example.cine101.model.Season;
+import com.example.cine101.model.Tmdb.Cast;
+import com.example.cine101.model.Tmdb.CreatedBy;
+import com.example.cine101.model.Tmdb.Genre;
+import com.example.cine101.model.Tmdb.Networks;
+import com.example.cine101.model.Tmdb.ProductionCompany;
+import com.example.cine101.model.Tmdb.Season;
 import com.example.cine101.util.Credentials;
 import com.squareup.picasso.Picasso;
 

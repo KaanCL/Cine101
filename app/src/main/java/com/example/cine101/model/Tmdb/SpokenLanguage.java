@@ -1,4 +1,4 @@
-package com.example.cine101.model;
+package com.example.cine101.model.Tmdb;
 
 public class SpokenLanguage {
     private String englishName;
