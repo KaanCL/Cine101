@@ -4,15 +4,18 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.cine101.model.Tmdb.MovieDetails;
+import com.example.cine101.model.Tmdb.VideosTMDB;
 import com.example.cine101.model.Youtube.Items;
 import com.example.cine101.model.Youtube.Snippet;
 import com.example.cine101.model.Youtube.Video;
 import com.example.cine101.responses.CastResponse;
 import com.example.cine101.responses.ImagesResponse;
 import com.example.cine101.responses.MovieResponse;
+import com.example.cine101.responses.VideosResponse;
 import com.example.cine101.service.RetrofitRequest;
 import com.example.cine101.service.TmbdInterface;
 import com.example.cine101.service.YoutubeInterface;
+import com.example.cine101.util.Credentials;
 
 import java.util.ArrayList;
 
@@ -257,35 +260,69 @@ public void clear(){
         return  data;
     }
 
-    public LiveData<Video> getMovieVideos(String videoId , String part ,String apiKey){
+
+    public LiveData<VideosResponse> getMovieVideos(int movieId , String apiKey){
+        final MutableLiveData<VideosResponse> data = new MutableLiveData<>();
+        tmbdInterface.getMovieVideos(movieId,apiKey)
+                .enqueue(new Callback<VideosResponse>() {
+                    @Override
+                    public void onResponse(Call<VideosResponse> call, Response<VideosResponse> response) {
+
+                        if(response.isSuccessful()){
+                            data.setValue(response.body());
+
+
+                            ArrayList<VideosTMDB> videosTMDBS = response.body().getResults();
+
+                            for(VideosTMDB e : videosTMDBS){
+                                Credentials.setVideo_Id(e.getKey());
+
+                            }
+
+
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<VideosResponse> call, Throwable t) {
+
+                    }
+                });
+
+        return  data;
+
+    }
+
+    public LiveData<Video> getYoutubeVideo(String videoID , String part , String apiKey){
         final MutableLiveData<Video> data = new MutableLiveData<>();
-        youtubeInterface.getmovieVideos(videoId,part,apiKey)
+        youtubeInterface.getmovieVideos(videoID,part,apiKey)
                 .enqueue(new Callback<Video>() {
                     @Override
                     public void onResponse(Call<Video> call, Response<Video> response) {
+
                         if(response.isSuccessful()){
                             data.setValue(response.body());
-                            Items[] items =(response.body().getItems());
-                            System.out.println(items);
-                            for (Items e :items){
-                                System.out.println(e.getSnippet().title);
+                            System.out.println("İşlem Başarılı ! ");
+
+                            for(Items e : response.body().getItems()){
+                                System.out.println(e.getSnippet().getThumbnails().getMedium().getUrl());
 
                             }
 
                         }
-                        else {
-                            System.out.println("Video hata" + response.code());
-                        }
+                        System.out.println("İşlem Başarısız " + response.code());
+
                     }
 
                     @Override
                     public void onFailure(Call<Video> call, Throwable t) {
-                        System.out.println("Video hata" + t);
+
                     }
                 });
-       return  data;
-
+        return data;
     }
+
 
 
 }

@@ -34,7 +34,7 @@ public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.RowHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ActorAdapter.RowHolder holder, int position) {
-   holder.bind(cast.get(position),position);
+        holder.bind(cast.get(position),position);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.RowHolder> {
             textRole=itemView.findViewById(R.id.actor_role);
             brandImage=itemView.findViewById(R.id.actor_brand);
 
-          //  Picasso.get().load("https://image.tmdb.org/t/p/original" + cast.getProfilePath()).into(brandImage);
+            //  Picasso.get().load("https://image.tmdb.org/t/p/original" + cast.getProfilePath()).into(brandImage);
 
             Glide.with(context)
                     .load("https://image.tmdb.org/t/p/original" + cast.getProfilePath())

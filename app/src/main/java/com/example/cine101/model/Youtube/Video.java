@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Video {
     private String kind;
     private String etag;
-    private Items[] items;
+    private ArrayList<Items>items;
    // private ArrayList<PageInfo> PageInfo;
 
     public String getKind() {
@@ -16,7 +16,7 @@ public class Video {
         return etag;
     }
 
-    public Items[] getItems() {
+    public ArrayList<Items> getItems() {
         return items;
     }
 

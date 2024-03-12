@@ -8,6 +8,7 @@ import com.example.cine101.model.Tmdb.MovieDetails;
 import com.example.cine101.responses.MovieResponse;
 import com.example.cine101.responses.PeopleResponse;
 import com.example.cine101.responses.SerieResponse;
+import com.example.cine101.responses.VideosResponse;
 
 import io.reactivex.Observable;
 import retrofit2.Call;
@@ -77,6 +78,11 @@ public interface TmbdInterface {
             @Path("movie_id") int movie_id,
             @Query("api_key") String apikey
     );
+    @GET("movie/{movie_id}/videos")
+  Call<VideosResponse> getMovieVideos(
+            @Path("movie_id") int movie_id,
+            @Query("api_key") String apikey
+  );
 
     @GET("search/movie")
    Call<MovieResponse> getSearchResult(
@@ -157,5 +163,8 @@ public interface TmbdInterface {
             @Query("api_key") String apikey,
             @Query("query") String query
     );
+
+
+
 
 }

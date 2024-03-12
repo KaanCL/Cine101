@@ -12,7 +12,7 @@ public class Credentials {
 
     public static final String part ="Snippet";
 
-    public static final String Video_Id = "hUbIsfzOjk4";
+    public static String Video_Id = "";
 
     public static final int page = 1;
 
@@ -52,6 +52,14 @@ public class Credentials {
 
     public static void setSeasonNumber(double seasonNumber) {
         Credentials.seasonNumber = (int) seasonNumber;
+    }
+
+    public static String getVideo_Id() {
+        return Video_Id;
+    }
+
+    public static void setVideo_Id(String video_Id) {
+        Video_Id = video_Id;
     }
 
     public static int getSeasonNumber() {

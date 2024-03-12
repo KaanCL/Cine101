@@ -2,40 +2,29 @@ package com.example.cine101.model.Youtube;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 public class Thumbnails {
+
     @SerializedName("default")
-   private Default thumbnaildefaults;
+    private Thumbnaildefault thumbnaildefault;
 
     @SerializedName("medium")
-   private Default thumbnailmediums;
+    private Thumbnailmediums medium;
 
-    @SerializedName("high")
-   private Default thumbnailhigh;
+    @SerializedName("standard")
+    private Thumbnailstandart standart;
 
-  @SerializedName("standart")
-   private Default thumbnailstandart;
-
-  @SerializedName("maxres")
-   private Default thumbnailmaxres;
-
-
-    public Default getThumbnaildefaults() {
-        return thumbnaildefaults;
+    public Thumbnailmediums getMedium() {
+        return medium;
     }
 
-    public Default getThumbnailmediums() {
-        return thumbnailmediums;
+    public Thumbnaildefault getThumbnaildefault() {
+        return thumbnaildefault;
     }
 
-    public Default getThumbnailhigh() {
-        return thumbnailhigh;
-    }
-
-    public Default getThumbnailstandart() {
-        return thumbnailstandart;
-    }
-
-    public Default getThumbnailmaxres() {
-        return thumbnailmaxres;
+    public Thumbnailstandart getStandart() {
+        return standart;
     }
 }
+

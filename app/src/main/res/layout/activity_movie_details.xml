@@ -141,7 +141,7 @@
 
                         <TextView
                             android:id="@+id/movie_type"
-                            android:layout_width="wrap_content"
+                            android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nunito"
                             android:textColor="@color/white"
@@ -359,7 +359,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="6dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/nunito"
                 android:text="Cast"
                 android:textColor="#FFFFFF"
@@ -400,7 +400,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunito"
-                android:text="Fragmans"
+                android:text="Videos"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
                 android:layout_marginStart="6dp"

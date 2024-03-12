@@ -8,7 +8,7 @@ public class Snippet {
     private String channelId;
     public  String title;
     private String description;
-    private Thumbnails Thumbnails;
+    private Thumbnails thumbnails;
     private String channelTitle;
     private String[] tags;
     private String categoryId;
@@ -37,8 +37,8 @@ public class Snippet {
         return Localized;
     }
 
-    public com.example.cine101.model.Youtube.Thumbnails getThumbnails() {
-        return Thumbnails;
+    public Thumbnails getThumbnails() {
+        return thumbnails;
     }
 
     public String getDefaultAudioLanguage() {

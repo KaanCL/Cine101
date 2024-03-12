@@ -1,6 +1,7 @@
 package com.example.cine101.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,30 +12,45 @@ import android.content.Intent;
 import com.example.cine101.R;
 import com.example.cine101.ViewModel.MovieViewModel;
 import com.example.cine101.adapter.ActorAdapter;
+import com.example.cine101.adapter.VideosAdapter;
 import com.example.cine101.adapter.MovieDetailsActivity_Images_Adapter;
 import com.example.cine101.databinding.ActivityMovieDetailsBinding;
 import com.example.cine101.model.Tmdb.Cast;
 import com.example.cine101.model.Tmdb.Genre;
 import com.example.cine101.model.Tmdb.Images;
 import com.example.cine101.model.Tmdb.ProductionCompany;
+import com.example.cine101.model.Tmdb.VideosTMDB;
+import com.example.cine101.model.Youtube.Items;
+import com.example.cine101.model.Youtube.Snippet;
+import com.example.cine101.model.Youtube.Video;
+import com.example.cine101.repository.MovieRespository;
+import com.example.cine101.responses.VideosResponse;
+import com.example.cine101.util.Credentials;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import retrofit2.Retrofit;
 
+import static com.example.cine101.util.Credentials.API_KEY_YOUTUBE;
+import static  com.example.cine101.util.Credentials.Video_Id;
+import static com.example.cine101.util.Credentials.part;
 
 public class MovieDetailsActivity extends AppCompatActivity {
 
     ActivityMovieDetailsBinding binding;
      int movieId;
-     RecyclerView recyclerView_cast , recyclerView_images;
+     RecyclerView recyclerView_cast , recyclerView_images , recyclerView_fragmans;
 
      ActorAdapter movieDetailsActivityActorAdapter;
      MovieDetailsActivity_Images_Adapter movieDetailsActivityImagesAdapter;
+     VideosAdapter videosAdapter;
 
     Retrofit retrofit;
 
+    private  Snippet snippet;
+
+    private  MovieRespository movieRespository = new MovieRespository();
     private MovieViewModel movieViewModel;
 
     @Override
@@ -53,6 +69,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         recyclerView_cast = binding.reyclerViewCast;
         recyclerView_images = findViewById(R.id.recyclerView_images);
+        recyclerView_fragmans = binding.reyclerViewFragmans;
 
         movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
 
@@ -60,6 +77,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
         getMovieDetails();
         getMovieCast();
         getMovieImages();
+        getMovieVideos();
+
 
     }
 
@@ -232,19 +251,32 @@ public class MovieDetailsActivity extends AppCompatActivity {
         });}
 
     public void getMovieVideos(){
-        movieViewModel.getGetVideoLiveData().observe(this,video -> {
+       movieViewModel.getVideosResponseLiveData().observe(this, videosResponse -> {
+            ArrayList<VideosTMDB> videosTMDBS = videosResponse.getResults();
+            ArrayList<ArrayList<Items>> itemList = new ArrayList<>();
 
 
+            for (VideosTMDB e : videosTMDBS) {
+                Video_Id = e.getKey();
+                Credentials.setVideo_Id(Video_Id);
 
+                LiveData<Video> videos = movieRespository.getYoutubeVideo(Video_Id, part, API_KEY_YOUTUBE);
 
-
-
-
-
-
+                videos.observe(this, video -> {
+                    ArrayList<Items> item = video.getItems();
+                    itemList.add(item);
+                    // Eğer itemList tamamlandıysa, recyclerView ve adapter ayarlaması yapılır.
+                    if (itemList.size() == videosTMDBS.size()) {
+                        System.out.println(itemList.size());
+                        recyclerView_fragmans.setLayoutManager(new LinearLayoutManager(MovieDetailsActivity.this, LinearLayoutManager.HORIZONTAL, false));
+                        videosAdapter = new VideosAdapter(videosTMDBS, itemList, MovieDetailsActivity.this);
+                        recyclerView_fragmans.setAdapter(videosAdapter);
+                    }
+                });
+            }
         });
-    }
 
+    }
 
    /*public void getMovieImages(String apikey ,int id){
        TmbdInterface tmbdInterface = retrofit.create(TmbdInterface.class);

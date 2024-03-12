@@ -12,6 +12,7 @@ import com.example.cine101.repository.MovieRespository;
 import com.example.cine101.responses.CastResponse;
 import com.example.cine101.responses.ImagesResponse;
 import com.example.cine101.responses.MovieResponse;
+import com.example.cine101.responses.VideosResponse;
 
 import static com.example.cine101.util.Credentials.API_KEY_TMDB;
 import static com.example.cine101.util.Credentials.API_KEY_YOUTUBE;
@@ -29,7 +30,8 @@ public class MovieViewModel extends AndroidViewModel {
     private LiveData<MovieDetails> getMovieDetailsLiveData;
     private LiveData<CastResponse> getCastLiveData;
     private LiveData<ImagesResponse> getMovieImagesLiveData;
-    private LiveData<Video> getVideoLiveData;
+    private LiveData<VideosResponse> videosResponseLiveData;
+    //private LiveData<Video> videoLiveData;
 
 
     public MovieViewModel(@NonNull Application application) {
@@ -44,7 +46,9 @@ public class MovieViewModel extends AndroidViewModel {
         getCastLiveData = movieRespository.getCast(ID, API_KEY_TMDB);
         getMovieImagesLiveData = movieRespository.getMovieImages(ID, API_KEY_TMDB);
         getMovieSearchResult = movieRespository.getMovieSearchResult(API_KEY_TMDB, Query);
-        getVideoLiveData = movieRespository.getMovieVideos(Video_Id , part ,API_KEY_YOUTUBE);
+        videosResponseLiveData = movieRespository.getMovieVideos(ID,API_KEY_TMDB);
+       // videoLiveData = movieRespository.getYoutubeVideo(Video_Id,part,API_KEY_YOUTUBE);
+
 
 
     }
@@ -82,7 +86,11 @@ public class MovieViewModel extends AndroidViewModel {
         return movieResponseTopratedLiveData;
     }
 
-    public LiveData<Video> getGetVideoLiveData() {
-        return getVideoLiveData;
+    public LiveData<VideosResponse> getVideosResponseLiveData() {
+        return videosResponseLiveData;
     }
+
+   /* public LiveData<Video> getVideoLiveData() {
+        return videoLiveData;
+    }*/
 }
