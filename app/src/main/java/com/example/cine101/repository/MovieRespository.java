@@ -306,7 +306,6 @@ public void clear(){
                             System.out.println("İşlem Başarılı ! ");
 
                             for(Items e : response.body().getItems()){
-                                System.out.println(e.getSnippet().getThumbnails().getMedium().getUrl());
 
                             }
 

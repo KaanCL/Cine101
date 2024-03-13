@@ -45,7 +45,7 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.RowHolder>
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(holder.itemView.getContext(), SerieDetailsActivity.class);
-                intent.putExtra("serieId",series.get(position).getId());
+              // intent.putExtra("serieId",series.get(position).getId());
                 Credentials.setID(series.get(position).getId());
                 holder.itemView.getContext().startActivity(intent);
             }

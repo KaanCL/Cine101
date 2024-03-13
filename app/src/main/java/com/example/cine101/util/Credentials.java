@@ -38,6 +38,16 @@ public class Credentials {
 
     public static String Query = "";
 
+     public static String video_url ="";
+
+    public static String getVideo_url() {
+        return video_url;
+    }
+
+    public static void setVideo_url(String video_url) {
+        Credentials.video_url = video_url;
+    }
+
     public static String getBrand() {
         return brand;
     }
