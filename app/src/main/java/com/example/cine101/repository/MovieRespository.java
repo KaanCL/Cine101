@@ -270,20 +270,14 @@ public void clear(){
 
                         if(response.isSuccessful()){
                             data.setValue(response.body());
-
-
                             ArrayList<VideosTMDB> videosTMDBS = response.body().getResults();
 
                             for(VideosTMDB e : videosTMDBS){
                                 Credentials.setVideo_Id(e.getKey());
-
                             }
-
-
 
                         }
                     }
-
                     @Override
                     public void onFailure(Call<VideosResponse> call, Throwable t) {
 
@@ -303,14 +297,11 @@ public void clear(){
 
                         if(response.isSuccessful()){
                             data.setValue(response.body());
-                            System.out.println("İşlem Başarılı ! ");
-
                             for(Items e : response.body().getItems()){
 
                             }
 
                         }
-                        System.out.println("İşlem Başarısız " + response.code());
 
                     }
 
@@ -321,6 +312,7 @@ public void clear(){
                 });
         return data;
     }
+
 
 
 

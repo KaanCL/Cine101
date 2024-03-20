@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.example.cine101.R;
 import com.example.cine101.ViewModel.PeopleViewModel;
+import com.example.cine101.WatchList;
 import com.example.cine101.adapter.PeopleAdapter;
 import com.example.cine101.model.Tmdb.People;
 
@@ -81,6 +82,10 @@ public class PeopleActivity extends AppCompatActivity {
 
     public void openSerie(View view) {
         Intent intent = new Intent( PeopleActivity.this,SerieActivity.class);
+        startActivity(intent);
+    }
+    public void openWatchlist(View view) {
+        Intent intent = new Intent(PeopleActivity.this, WatchList.class);
         startActivity(intent);
     }
 

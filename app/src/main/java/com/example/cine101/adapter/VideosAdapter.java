@@ -1,17 +1,19 @@
 package com.example.cine101.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.cine101.VideoActivity;
+import com.example.cine101.VideoFragment;
 import com.example.cine101.model.Tmdb.VideosTMDB;
 import com.example.cine101.model.Youtube.Items;
 import com.example.cine101.model.Youtube.Thumbnails;
@@ -26,18 +28,29 @@ public class VideosAdapter extends  RecyclerView.Adapter<VideosAdapter.RowHolder
 
     private Context context;
     private Thumbnails thumbnails;
+    private FrameLayout frameLayout;
+    private String url = " ";
+    private  Credentials credentials = new Credentials();
+    private FragmentManager fragmentManager ;
+    private FragmentTransaction fragmentTransaction;
 
-    public VideosAdapter(ArrayList<VideosTMDB> videoTMBD, ArrayList<ArrayList<Items>> items, Context context) {
+
+    public String getUrl() {
+        return url;
+    }
+
+    private VideoFragment videoFragment = new VideoFragment();
+
+    public VideosAdapter(ArrayList<VideosTMDB> videoTMBD, ArrayList<ArrayList<Items>> items, Context context,FragmentManager fragmentManager) {
         this.videoTMBD = videoTMBD;
         this.items = items;
         this.context = context;
+        this.fragmentManager =fragmentManager;
     }
 
     @NonNull
     @Override
     public RowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.fragman_layout,parent,false);
         return new RowHolder(view);
@@ -49,17 +62,20 @@ public class VideosAdapter extends  RecyclerView.Adapter<VideosAdapter.RowHolder
 
         for(Items item :itemList){
             holder.bind(videoTMBD.get(position),item, position);
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
+             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(holder.itemView.getContext(), VideoActivity.class);
-                    Credentials.setVideo_url(item.getId());
-                    holder.itemView.getContext().startActivity(intent);
+               public void onClick(View v) {
+                    credentials.setVideo_url(item.getId());
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragmanWidget,videoFragment);
+                    fragmentTransaction.commit();
+                    FrameLayout frameLayout=holder.itemView.getRootView().findViewById(R.id.fragmanWidget);
+                    if (frameLayout != null) {
+                        frameLayout.setVisibility(View.VISIBLE);
+                    }
                 }
             });
         }
-
-
     }
 
     @Override
@@ -83,7 +99,6 @@ public class VideosAdapter extends  RecyclerView.Adapter<VideosAdapter.RowHolder
 
 
             if (videosTMDB != null && item.getSnippet().getThumbnails()!= null) {
-
 
                 textName.setText(videosTMDB.getName());
 

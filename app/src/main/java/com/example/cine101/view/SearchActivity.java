@@ -12,6 +12,7 @@ import android.view.View;
 
 import com.example.cine101.R;
 import com.example.cine101.ViewModel.MovieViewModel;
+import com.example.cine101.WatchList;
 import com.example.cine101.adapter.MainActivityMovie_Adapter;
 import com.example.cine101.adapter.SeriesAdapter;
 import com.example.cine101.databinding.ActivitySearchBinding;
@@ -188,7 +189,12 @@ public class SearchActivity extends AppCompatActivity {
 
 
     public void openSearch(View view) {
-        Intent intent = new Intent(SearchActivity.this, MainActivity.class);
+        Intent intent = new Intent(SearchActivity.this, SearchActivity.class);
+        startActivity(intent);
+    }
+
+    public void openWatchlist(View view) {
+        Intent intent = new Intent(SearchActivity.this, WatchList.class);
         startActivity(intent);
     }
 

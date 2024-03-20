@@ -12,6 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cine101.R;
+import com.example.cine101.RoomData.WatchListEntity;
+import com.example.cine101.RoomData.WatchListRespository;
+import com.example.cine101.ViewModel.WatchListViewModel;
 import com.example.cine101.model.Tmdb.Movie;
 import com.example.cine101.util.Credentials;
 import com.example.cine101.view.MovieDetailsActivity;
@@ -22,6 +25,8 @@ public class MainActivityMovie_Adapter extends RecyclerView.Adapter<MainActivity
 
     private ArrayList<Movie> movies ;
     private Context context;
+    private WatchListViewModel watchListViewModel;
+    private WatchListEntity watchListEntity;
 
     public MainActivityMovie_Adapter(Context context ,ArrayList<Movie> movies){
     this.movies = movies;
@@ -37,6 +42,7 @@ public class MainActivityMovie_Adapter extends RecyclerView.Adapter<MainActivity
     }
     @Override
     public void onBindViewHolder(@NonNull MainActivityMovie_Adapter.RowHolder holder, int position) {
+
 
      holder.bind(movies.get(position) ,position);
 

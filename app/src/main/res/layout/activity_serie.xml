@@ -148,7 +148,8 @@
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
                     android:src="@drawable/screen"
-                    android:layout_marginLeft="20dp"/>
+                    android:onClick="openSerie"
+                    android:layout_marginLeft="15dp"/>
 
                 <ImageView
                     android:id="@+id/cast_section"
@@ -156,19 +157,25 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/user"
                     android:onClick="openPeople"
-                    android:layout_marginLeft="20dp"/>
+                    android:layout_marginLeft="15dp"/>
+                <ImageView
+                    android:id="@+id/search_watchlist"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:onClick="openWatchlist"
+                    android:src="@drawable/bookmark"></ImageView>
 
                 <ImageView
                     android:id="@+id/search_section"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="15dp"
                     android:onClick="openSearch"
                     android:src="@drawable/search" />
+
+
             </LinearLayout>
-
-
 
 
         </androidx.cardview.widget.CardView>

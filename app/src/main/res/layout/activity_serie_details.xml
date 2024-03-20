@@ -55,11 +55,11 @@
 
                         <TextView
                             android:id="@+id/serie_title"
-                            android:layout_width="wrap_content"
+                            android:layout_width="165dp"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nunito"
                             android:textColor="@color/white"
-                            android:textSize="20sp"
+                            android:textSize="22sp"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
@@ -75,7 +75,7 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="7dp"
+                            android:layout_marginLeft="2dp"
                             android:layout_marginTop="10dp"
                             android:orientation="horizontal">
 
@@ -86,7 +86,7 @@
                                 android:layout_marginRight="3dp"
                                 android:fontFamily="@font/nunito"
                                 android:textColor="#FFFF"
-                                android:textSize="11dp" />
+                                android:textSize="13dp" />
 
                             <ImageView
                                 android:id="@+id/imageView"
@@ -105,7 +105,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nunito"
                         android:textColor="@color/white"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/serie_tagline"
@@ -115,16 +115,9 @@
                         android:fontFamily="@font/nunito"
                         android:shadowColor="#AEAEAE"
                         android:textColor="#AEAEAE"
-                        android:textSize="11sp" />
+                        android:textSize="15sp" />
 
-                    <TextView
-                        android:id="@+id/serie_overview"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:fontFamily="@font/nunito"
-                        android:textColor="@color/white"
-                        android:textSize="11sp" />
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -230,6 +223,36 @@
                 </LinearLayout>
 
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textView_overview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/nunito"
+                android:text="Overview"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.017"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/serie_brand" />
+
+            <TextView
+                android:id="@+id/serie_overview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="6dp"
+                android:fontFamily="@font/nunito"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_overview" />
+
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
@@ -242,7 +265,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.018"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/serie_brand" />
+                app:layout_constraintTop_toBottomOf="@+id/serie_overview" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"

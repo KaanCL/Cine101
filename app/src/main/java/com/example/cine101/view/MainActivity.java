@@ -1,6 +1,8 @@
 package com.example.cine101.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,7 +12,10 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.cine101.R;
+import com.example.cine101.RoomData.WatchListEntity;
 import com.example.cine101.ViewModel.MovieViewModel;
+import com.example.cine101.ViewModel.WatchListViewModel;
+import com.example.cine101.WatchList;
 import com.example.cine101.adapter.MainActivityMovie_Adapter;
 import com.example.cine101.model.Tmdb.Movie;
 
@@ -23,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView_popular, recyclerView_trending, recyclerView_theatre  ,recyclerView_upcoming , recyclerView_toprated;
     MainActivityMovie_Adapter mainActivityMovieAdapter;
     private MovieViewModel movieViewModel;
+    private WatchListViewModel watchListViewModel;
+    private FragmentTransaction fragmentTransaction;
 
 
 
@@ -38,7 +45,21 @@ public class MainActivity extends AppCompatActivity {
         recyclerView_toprated=findViewById(R.id.recyclerView_TopRated);
 
         movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
+        watchListViewModel = new ViewModelProvider(this).get(WatchListViewModel.class);
 
+
+        WatchListEntity watchListEntity = new WatchListEntity(
+          "1",
+          "Rush",
+          "fast car , big balls",
+          "2013",
+          "72",
+          "7.2",
+          "actions"
+
+        );
+
+        watchListViewModel.deleteAll();
 
         // getSearch_popular(API_KEY_TMDB, language, page, region);
         //  getSearch_Trending(API_KEY_TMDB, language);
@@ -49,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
         getMovie_Theatre();
         getMovie_upcoming();
         getMovie_Toprated();
-
 
     }
 
@@ -117,6 +137,10 @@ public class MainActivity extends AppCompatActivity {
     }
     public void openPeople(View view) {
         Intent intent = new Intent( MainActivity.this,PeopleActivity.class);
+        startActivity(intent);
+    }
+    public void watchlist(View view) {
+        Intent intent = new Intent( MainActivity.this,WatchList.class);
         startActivity(intent);
     }
 

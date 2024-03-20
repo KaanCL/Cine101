@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.example.cine101.R;
 import com.example.cine101.ViewModel.SeriesViewModel;
+import com.example.cine101.WatchList;
 import com.example.cine101.adapter.SeriesAdapter;
 import com.example.cine101.model.Tmdb.Serie;
 
@@ -93,6 +94,18 @@ public class SerieActivity extends AppCompatActivity {
         Intent intent = new Intent( SerieActivity.this,MainActivity.class);
         startActivity(intent);
     }
+
+    public void openSerie(View view) {
+        Intent intent = new Intent( SerieActivity.this,SerieActivity.class);
+        startActivity(intent);
+    }
+
+
+    public void openWatchlist(View view) {
+        Intent intent = new Intent(SerieActivity.this, WatchList.class);
+        startActivity(intent);
+    }
+
 
     public void openPeople(View view) {
         Intent intent = new Intent( SerieActivity.this,PeopleActivity.class);

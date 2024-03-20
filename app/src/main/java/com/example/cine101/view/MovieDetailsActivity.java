@@ -1,6 +1,7 @@
 package com.example.cine101.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,7 +11,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
 import com.example.cine101.R;
+import com.example.cine101.RoomData.WatchListEntity;
 import com.example.cine101.ViewModel.MovieViewModel;
+import com.example.cine101.ViewModel.WatchListViewModel;
 import com.example.cine101.adapter.ActorAdapter;
 import com.example.cine101.adapter.VideosAdapter;
 import com.example.cine101.adapter.MovieDetailsActivity_Images_Adapter;
@@ -24,11 +27,11 @@ import com.example.cine101.model.Youtube.Items;
 import com.example.cine101.model.Youtube.Snippet;
 import com.example.cine101.model.Youtube.Video;
 import com.example.cine101.repository.MovieRespository;
-import com.example.cine101.responses.VideosResponse;
 import com.example.cine101.util.Credentials;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Retrofit;
 
@@ -52,6 +55,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
     private  MovieRespository movieRespository = new MovieRespository();
     private MovieViewModel movieViewModel;
+    private WatchListViewModel watchListViewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +64,28 @@ public class MovieDetailsActivity extends AppCompatActivity {
         binding = ActivityMovieDetailsBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        watchListViewModel = new ViewModelProvider(this).get(WatchListViewModel.class);
+
+        LiveData<List<WatchListEntity>> movies = watchListViewModel.getAllWatchList();
+
+        movies.observe(this,watchListEntities -> {
+
+            for(WatchListEntity e : watchListEntities){
+
+                System.out.println(e.getTitle());
+
+            }
+
+
+
+        });
+
+
+
+
+
+
 
 
         Intent intent = getIntent();
@@ -73,14 +100,14 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
 
-
         getMovieDetails();
         getMovieCast();
         getMovieImages();
         getMovieVideos();
 
-
     }
+
+
 
     public void getMovieDetails(){
         movieViewModel.getGetMovieDetailsLiveData().observe(this , movieDetails -> {
@@ -255,6 +282,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
             ArrayList<VideosTMDB> videosTMDBS = videosResponse.getResults();
             ArrayList<ArrayList<Items>> itemList = new ArrayList<>();
 
+           FragmentManager fragmentManager = getSupportFragmentManager();
 
             for (VideosTMDB e : videosTMDBS) {
                 Video_Id = e.getKey();
@@ -269,12 +297,15 @@ public class MovieDetailsActivity extends AppCompatActivity {
                     if (itemList.size() == videosTMDBS.size()) {
                         System.out.println(itemList.size());
                         recyclerView_fragmans.setLayoutManager(new LinearLayoutManager(MovieDetailsActivity.this, LinearLayoutManager.HORIZONTAL, false));
-                        videosAdapter = new VideosAdapter(videosTMDBS, itemList, MovieDetailsActivity.this);
+                        videosAdapter = new VideosAdapter(videosTMDBS, itemList, MovieDetailsActivity.this,fragmentManager);
                         recyclerView_fragmans.setAdapter(videosAdapter);
                     }
+
                 });
             }
-        });
+
+
+       });
 
     }
 
