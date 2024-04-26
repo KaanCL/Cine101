@@ -15,6 +15,7 @@ import com.example.cine101.RoomData.WatchListEntity;
 import com.example.cine101.ViewModel.MovieViewModel;
 import com.example.cine101.ViewModel.WatchListViewModel;
 import com.example.cine101.adapter.ActorAdapter;
+import com.example.cine101.adapter.MainActivityMovie_Adapter;
 import com.example.cine101.adapter.VideosAdapter;
 import com.example.cine101.adapter.MovieDetailsActivity_Images_Adapter;
 import com.example.cine101.databinding.ActivityMovieDetailsBinding;
@@ -44,18 +45,16 @@ public class MovieDetailsActivity extends AppCompatActivity {
     ActivityMovieDetailsBinding binding;
      int movieId;
      RecyclerView recyclerView_cast , recyclerView_images , recyclerView_fragmans;
-
      ActorAdapter movieDetailsActivityActorAdapter;
      MovieDetailsActivity_Images_Adapter movieDetailsActivityImagesAdapter;
      VideosAdapter videosAdapter;
-
     Retrofit retrofit;
-
     private  Snippet snippet;
-
     private  MovieRespository movieRespository = new MovieRespository();
     private MovieViewModel movieViewModel;
     private WatchListViewModel watchListViewModel;
+    MainActivityMovie_Adapter mainActivityMovieAdapter;
+
 
 
     @Override
@@ -64,29 +63,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
         binding = ActivityMovieDetailsBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-
-        watchListViewModel = new ViewModelProvider(this).get(WatchListViewModel.class);
-
-        LiveData<List<WatchListEntity>> movies = watchListViewModel.getAllWatchList();
-
-        movies.observe(this,watchListEntities -> {
-
-            for(WatchListEntity e : watchListEntities){
-
-                System.out.println(e.getTitle());
-
-            }
-
-
-
-        });
-
-
-
-
-
-
-
 
         Intent intent = getIntent();
 
@@ -99,6 +75,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         recyclerView_fragmans = binding.reyclerViewFragmans;
 
         movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
+
 
         getMovieDetails();
         getMovieCast();

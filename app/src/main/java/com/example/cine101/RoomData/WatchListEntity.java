@@ -18,18 +18,15 @@ public class WatchListEntity {
 
     private String date;
 
-    private String runTime;
-
     private String rate;
 
     private String type;
 
-    public WatchListEntity( String movie_id, String title, String overView, String date, String runTime, String rate, String type) {
+    public WatchListEntity( String movie_id, String title, String overView, String date, String rate ,String type) {
         this.movie_id = movie_id;
         this.title = title;
         this.overView = overView;
         this.date = date;
-        this.runTime = runTime;
         this.rate = rate;
         this.type = type;
     }
@@ -56,10 +53,6 @@ public class WatchListEntity {
 
     public String getDate() {
         return date;
-    }
-
-    public String getRunTime() {
-        return runTime;
     }
 
     public String getRate() {

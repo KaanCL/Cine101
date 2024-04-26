@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private MovieViewModel movieViewModel;
     private WatchListViewModel watchListViewModel;
     private FragmentTransaction fragmentTransaction;
+    WatchListEntity watchListEntity;
 
 
 
@@ -45,25 +46,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerView_toprated=findViewById(R.id.recyclerView_TopRated);
 
         movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
-        watchListViewModel = new ViewModelProvider(this).get(WatchListViewModel.class);
 
-
-        WatchListEntity watchListEntity = new WatchListEntity(
-          "1",
-          "Rush",
-          "fast car , big balls",
-          "2013",
-          "72",
-          "7.2",
-          "actions"
-
-        );
-
-        watchListViewModel.deleteAll();
 
         // getSearch_popular(API_KEY_TMDB, language, page, region);
         //  getSearch_Trending(API_KEY_TMDB, language);
         // getSearch_inTheatre(API_KEY_TMDB, language, page, region);
+
 
         getMovie_Popular();
         getMovie_Trending();

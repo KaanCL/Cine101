@@ -13,7 +13,7 @@ import java.util.List;
 public class WatchListViewModel extends AndroidViewModel {
 
     private WatchListRespository watchListRespository;
-    private LiveData<List<WatchListEntity>> allWatchList;
+    private List<WatchListEntity> allWatchList;
 
     public WatchListViewModel(Application application) {
         super(application);
@@ -27,6 +27,6 @@ public class WatchListViewModel extends AndroidViewModel {
 
     public void deleteAll(){watchListRespository.AllDelete();}
 
-    public LiveData<List<WatchListEntity>> getAllWatchList(){return allWatchList;}
+    public List<WatchListEntity> getAllWatchList(){return allWatchList;}
 
 }

@@ -14,7 +14,7 @@ import io.reactivex.schedulers.Schedulers;
 public class WatchListRespository {
 
     private WatchListDao watchListDao;
-    private LiveData<List<WatchListEntity>> allWatchList;
+    private List<WatchListEntity> allWatchList;
     private CompositeDisposable compositeDisposable;
 
     public WatchListRespository(Application application) {
@@ -49,6 +49,6 @@ public class WatchListRespository {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe());
     }
-    public LiveData<List<WatchListEntity>> getAllWatchList(){return allWatchList;}
+    public List<WatchListEntity> getAllWatchList(){return allWatchList;}
 }
 

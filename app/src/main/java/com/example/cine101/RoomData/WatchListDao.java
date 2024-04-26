@@ -24,6 +24,6 @@ public interface WatchListDao {
     Completable deleteAllWatchList();
 
    @Query("SELECT * FROM Watchlist")
-   LiveData<List<WatchListEntity>> getAllWatchList();
+   List<WatchListEntity> getAllWatchList();
 
 }

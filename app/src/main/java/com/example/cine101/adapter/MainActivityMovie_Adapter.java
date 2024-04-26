@@ -1,5 +1,6 @@
 package com.example.cine101.adapter;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -9,12 +10,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cine101.R;
+import com.example.cine101.RoomData.WatchListDao;
+import com.example.cine101.RoomData.WatchListDatabase;
 import com.example.cine101.RoomData.WatchListEntity;
 import com.example.cine101.RoomData.WatchListRespository;
 import com.example.cine101.ViewModel.WatchListViewModel;
+import com.example.cine101.model.Tmdb.Genre;
 import com.example.cine101.model.Tmdb.Movie;
 import com.example.cine101.util.Credentials;
 import com.example.cine101.view.MovieDetailsActivity;
@@ -26,11 +31,14 @@ public class MainActivityMovie_Adapter extends RecyclerView.Adapter<MainActivity
     private ArrayList<Movie> movies ;
     private Context context;
     private WatchListViewModel watchListViewModel;
-    private WatchListEntity watchListEntity;
+    public  WatchListEntity watchListEntity;
+    private  Application application ;
+
 
     public MainActivityMovie_Adapter(Context context ,ArrayList<Movie> movies){
+        this.context = context;
     this.movies = movies;
-    this.context = context;}
+   ;}
 
     @NonNull
     @Override
@@ -43,14 +51,13 @@ public class MainActivityMovie_Adapter extends RecyclerView.Adapter<MainActivity
     @Override
     public void onBindViewHolder(@NonNull MainActivityMovie_Adapter.RowHolder holder, int position) {
 
-
-     holder.bind(movies.get(position) ,position);
-
-     holder.itemView.setOnClickListener(new View.OnClickListener() {
+       holder.bind(movies.get(position) ,position);
+       holder.itemView.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
              Intent intent = new Intent(holder.itemView.getContext(), MovieDetailsActivity.class);
              intent.putExtra("movieId",movies.get(position).getId());
+             holder.addWatchList(movies.get(position),position);
              Credentials.setID(movies.get(position).getId());
              holder.itemView.getContext().startActivity(intent);
 
@@ -103,5 +110,30 @@ public class MainActivityMovie_Adapter extends RecyclerView.Adapter<MainActivity
                     .into(brandImage);
         }
         }
+
+        public void addWatchList(Movie movie, Integer Position){
+
+          //  WatchListRespository watchListRespository = new WatchListRespository(context);
+           // WatchListDatabase database = WatchListDatabase.getInstance(application);
+            //WatchListDao watchListDao = database.watchListDao();
+
+            String id = String.valueOf(movie.getId()) ;
+            String  title = String.valueOf(movie.getTitle());
+            String  overView = String.valueOf(movie.getOverview());
+            String date = String.valueOf(movie.getReleaseDate()) ;
+            String rate =Double.toString(movie.getVoteAverage());
+            String formattedRate=String.format("%.1f", Double.parseDouble(rate));
+
+           // WatchListEntity watchList = new WatchListEntity(id,title,overView,date,formattedRate,"aksiyon");
+          //  watchListRespository.Insert(watchList);
+            //watchListDao.insert(watchList);
+
+
+
+        }
+
+
     }
+
+
 }

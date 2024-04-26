@@ -174,13 +174,6 @@
         android:src="@drawable/user"
         android:onClick="openPeople"
         android:layout_marginLeft="15dp"/>
-    <ImageView
-        android:id="@+id/search_watchlist"
-        android:layout_width="30dp"
-        android:onClick="watchlist"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:src="@drawable/bookmark"></ImageView>
 
     <ImageView
         android:id="@+id/search_section"
